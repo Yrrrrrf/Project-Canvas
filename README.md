@@ -1,30 +1,23 @@
 # Project Canvas
 Digital Image Processing project, designed to edit, change format or make a collage between some images, also it could include some extra features.
 - `doc/notes.md` is a personal log od the development process.
-- **UML** Designed with LucidChart, you can see the diagram [here](https://lucid.app/lucidchart/8b0bffc8-464a-42c2-b46b-df83d975b3ff/edit?viewport_loc=264%2C-295%2C1547%2C1804%2CHWEp-vi-RSFO&invitationId=inv_6bbac133-284a-4ce8-9939-859cf0d7a0ea#).
+- **UML** Designed with LucidChart, you can see the diagram [here](https://lucid.app/lucidchart/06438ddf-70b4-4447-b708-2d4638cbfd79/edit?viewport_loc=318%2C367%2C2424%2C1216%2CvDxaZDTm0GVt&invitationId=inv_4ad1f930-406d-4b79-9583-730b083a4bd5).
+
 ----
 ### Setup
 - First make sure you have the **latest pip installed**: `python -m pip install --upgrade pip`
-- Make sure you install these libraries:
-```python
-pip install numpy
-pip install Pillow
-# pip install opencv-python 
-```
-
-- Run `main.py` from the path `Project Canvas/project/`
+- Use `pip install -r requirements.txt` to install the dependencies.
+- Run `src/main.py` from the root directory. (project canvas/)
 
 ----
 ### Development Tools:
-- [Python 3.10](https://www.python.org/) as programming language.
-- [Pillow 8.4.0](https://pypi.org/project/Pillow/) as image manipulation tool.
-- [numpy 1.21.4](https://pypi.org/project/numpy/) as array manipulation tool.
-- [tkinter 8.6](https://docs.python.org/3/library/tkinter.html) as GUI development tool.
-<!-- - [raylib 4.2.1.1](https://pypi.org/project/raylib/) as GUI development tool. -->
+- [python 3.11](https://www.python.org/) as programming language.
+- [Qt Designer](https://build-system.fman.io/qt-designer-download) as GUI designer.
+- [PyQt5](https://pypi.org/project/PyQt5/) as GUI library.
+- [OpenCV](https://pypi.org/project/opencv-python/) as image processing library.
+- [numpy](https://numpy.org/) as array management library.
 
 
 ### Planning Tools:
-- [obsidian(15.9)](https://obsidian.md/) as a notebook.
-- [Lucid-chart](https://lucid.app/): **UML creation tool**.
-- [Trello](https://trello.com/) as the **schedule**.
+- [LucidChart](https://www.lucidchart.com/) as UML diagram tool.
 - [Figma](https://figma.com/) as the **UserInterface planning tool**.

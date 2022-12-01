@@ -2,9 +2,15 @@
 # 2120019
 # Reza Campos Fernando Bryan
 
+from PyQt5 import QtCore, QtGui, QtWidgets
+from gui_sample import Ui_ProjectCanvas
 
 # App Launcher
 if __name__ == '__main__':
-    print("Hi Bro")
-    # APP(WIDTH, HEIGHT, TITLE,' ['AppData.VERSION.value+']
-
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    ProjectCanvas = QtWidgets.QMainWindow()
+    ui = Ui_ProjectCanvas()
+    ui.setupUi(ProjectCanvas)
+    ProjectCanvas.show()
+    sys.exit(app.exec_())

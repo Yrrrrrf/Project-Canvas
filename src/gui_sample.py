@@ -10,7 +10,6 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-
     # ProjectCanvas = QtWidgets.QMainWindow()
     #     ProjectCanvas = self.ProjectCanvas
 
