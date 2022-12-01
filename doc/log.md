@@ -21,6 +21,31 @@ Implemented image reader and current pixel detection(with mouse).
 Still need to implement the pixel's value detection to get the color of the pixel.
 Now I need to implement the image to numpy array converter and the neiborhood value detection. 
 
+### December 1st, 2022
+So I've done it again. The gui library that I was going to use is not Tkinter, there'll be `PyQt` instead.
+UML Diagram completed. Also the draft of the graphic user interface is completed.
+I still have to **create  the GUI using the Qt Designer**. 
 
-### November 29th, 2022
-Design UML class 
+----
+Pending tasks:
+- [ ] Create GUI using the Qt Designer.
+- [ ] Abstract gui.ui file to App classes.
+- [ ] Create App class.
+- [ ] Create ToolBar class.
+- [ ] Create Workspace class.
+- [ ] **Create Visualizer class**.
+- [ ] **Implement image reader**. Also consider the "currently selected" image (to be sure that we can switch between images).
+- [ ] Implement **selected image** feature.
+- [ ] Implement current pixel detection(with mouse).
+- [ ] Implement pixel's value detection to get the color of the pixel.
+- [ ] Implement basic image operations.
+- [ ] **Implement save image operation**. (jpeg, png, bmp, gif, tiff, webp)
+- [ ] Implement convolutions operation. (filters)
+- [ ] **Create Template class**.
+- [ ] Implement TemplateManager ???
+- [ ] **Test the save image operation**.
+
+Extra tasks:
+- [ ] Implement the image to numpy array converter and the neiborhood value detection.
+- [ ] Implement the neiborhood value detection.
+
