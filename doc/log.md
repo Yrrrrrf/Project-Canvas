@@ -36,16 +36,17 @@ Pending tasks:
 - [ ] **Create Visualizer class**.
 - [ ] **Implement image reader**. Also consider the "currently selected" image (to be sure that we can switch between images).
 - [ ] Implement **selected image** feature.
-- [ ] Implement current pixel detection(with mouse).
+- [ ] Implement current pixel detection (with mouse).
 - [ ] Implement pixel's value detection to get the color of the pixel.
-- [ ] Implement basic image operations.
-- [ ] **Implement save image operation**. (jpeg, png, bmp, gif, tiff, webp)
+- [ ] Implement basic pixel's operations.
+- [ ] **Implement save image operation** (jpeg, png, bmp, gif, etc).
 - [ ] Implement convolutions operation. (filters)
 - [ ] **Create Template class**.
 - [ ] Implement TemplateManager ???
 - [ ] **Test the save image operation**.
+- [ ] Implement histogram operations. (equalizations)
+- [ ] Implement noise operations. (salt & pepper, gaussian, etc)
 
 Extra tasks:
 - [ ] Implement the image to numpy array converter and the neiborhood value detection.
-- [ ] Implement the neiborhood value detection.
 

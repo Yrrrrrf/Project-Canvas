@@ -3,7 +3,7 @@
 # Reza Campos Fernando Bryan
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from gui_sample import Ui_ProjectCanvas
+from app_contents.app import Ui_ProjectCanvas
 
 # App Launcher
 if __name__ == '__main__':
@@ -14,3 +14,4 @@ if __name__ == '__main__':
     ui.setupUi(ProjectCanvas)
     ProjectCanvas.show()
     sys.exit(app.exec_())
+
