@@ -1,7 +1,3 @@
-# Digital Image Processing "Project Canvas"
-# 2120019
-# Reza Campos Fernando Bryan
-
 from PyQt6.QtWidgets import QApplication, QWidget, QIcon
 import sys
 

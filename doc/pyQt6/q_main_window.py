@@ -12,6 +12,8 @@ if __name__ == '__main__':
     window.setGeometry(100, 100, 1280, 720)  # Set the window geometry
     window.setMinimumSize(1280, 720)  # Set the minimum size of the window
     window.setWindowIcon(QIcon('resources/static/brush.png'))  # Set the window icon
+
+    window.setWindowOpacity(0.9)  # Set the window opacity
     window.setStyleSheet('background-color: #2d2d2d;')  # Set the window style sheet
 
     # Status Bar
