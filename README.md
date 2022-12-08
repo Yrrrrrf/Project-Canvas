@@ -17,10 +17,10 @@ Digital Image Processing project, designed to edit, change format or make a coll
 
 ## Development Tools
 
-- [python 3.11](https://www.python.org/) as programming language.
+- [python 3.9.16](https://www.python.org/) as programming language. Is python 3.9 just to access the QtDesigner.
 - [Riverbank Computing](https://www.riverbankcomputing.com/) as the PyQt6 provider.
   - [PyQt6](https://pypi.org/project/PyQt6/) as GUI library.
-  - [Qt Designer](https://build-system.fman.io/qt-designer-download) as GUI designer.
+  - [Qt Designer](https://build-system.fman.io/qt-designer-download) as GUI designer. To access the designer is also necesary to use `pip install pyqt6-tools`.
 - [OpenCV](https://pypi.org/project/opencv-python/) as image processing library.
 - [numpy](https://numpy.org/) as array management library.
 
