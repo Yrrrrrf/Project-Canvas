@@ -3,6 +3,7 @@ from PyQt6.QtGui import QImage, QPen, QBrush, QPainter
 from PyQt6.QtCore import Qt
 # from PyQt6 import QtCore
 import sys
+from ..globals import Settings 
 
 
 class Window(QWidget):
@@ -14,14 +15,15 @@ class Window(QWidget):
         super().__init__()
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)  # Remove the window frame
 
+
     def paintEvent(self, event):
         '''Main paint event function that draws the elements inside the window.'''
         painter = QPainter(self)
         # painter.setBrush(QBrush(Qt.GlobalColor.green, Qt.BrushStyle.BDiagPattern))
         painter.setPen(QPen(Qt.GlobalColor.darkCyan, 1, Qt.PenStyle.SolidLine))
         painter.drawImage(0, 0, QImage('resources\\img\\lena.jpg'))
-        painter.drawRect(0, 0, 1280, 720)
-        painter.drawRect(16, 16, 1280, 720)
+        painter.drawRect(0, 0, Settings.HEIGHT.value//2, Settings.WIDTH.value//2)
+        painter.drawRect(16, 16, Settings.HEIGHT.value//2, Settings.WIDTH.value//2)
 
 
 if __name__ == '__main__':

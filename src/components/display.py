@@ -1,14 +1,22 @@
+from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton, QMenu
 from PyQt6.QtWidgets import QWidget, QApplication
 from PyQt6.QtGui import QImage, QPen, QBrush, QPainter
 from PyQt6.QtCore import Qt
 import sys
+from dataclasses import dataclass
+from src.components.side_bar import SideBar
+from src.components.workspace import Workspace
 
 
-class Window(QWidget):
+@dataclass
+class Display(QWidget):
     '''
-    User Interface class referece to the window that contains all the widgets.
-    These includes the SideBar ^ the WorkSpace
+    Display class referece to the window that contains all the widgets.
     '''
+    sidebar: SideBar
+    workspace: Workspace
+
+
     def __init__(self):
         super().__init__()
 
@@ -25,7 +33,7 @@ class Window(QWidget):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)  # Manage the GUI application's control flow and main settings.
-    ui = Window()
+    ui = Display()
     # print(ui.paintEvent.__doc__)  # Print the docstring of the paintEvent function
     ui.show()
     sys.exit(app.exec())  # Start the event loop
