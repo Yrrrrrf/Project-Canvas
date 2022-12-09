@@ -4,7 +4,7 @@ Is a set of Python bindings for The Qt Company's Qt application framework and ru
 
 ## [Documantation](https://www.riverbankcomputing.com/static/Docs/PyQt6/)
 
-- [Modules](https://www.riverbankcomputing.com/static/Docs/PyQt6/modules.html) is a list of all the modules in PyQt6.
+- [Modules](https://doc.qt.io/qtforpython-5/modules.html) is a list of all the modules in PyQt6.
 
 ## Main Classes
 

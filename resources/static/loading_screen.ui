@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>604</width>
+    <height>305</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QFrame" name="main_frame">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>480</width>
+      <height>221</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: qconicalgradient(cx:0, cy:0, angle:135, stop:0.364964 rgba(255, 198, 0, 189), stop:0.378102 rgba(194, 255, 0, 183), stop:0.392701 rgba(130, 255, 0, 183), stop:0.405839 rgba(23, 255, 31, 203), stop:0.421898 rgba(23, 255, 97, 203), stop:0.445255 rgba(54, 255, 209, 227), stop:0.459854 rgba(54, 202, 255, 227), stop:0.471533 rgba(54, 137, 255, 227), stop:0.484672 rgba(168, 54, 255, 227), stop:0.50073 rgba(254, 92, 255, 255), stop:0.556204 rgba(255, 0, 31, 130), stop:0.610219 rgba(255, 0, 0, 255));
+border-radius: 40%;
+border: 10px solid;
+border-color: rgb(192, 0, 192);</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QProgressBar" name="progressBar">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>150</y>
+       <width>341</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QProgressBar{
+	border: none;
+	border-radius: 20%;
+	background-color: #ffe7ef;
+	color: white;
+	text-align: center;
+}
+
+QProgressBar::chunk{
+	border-radius: 20%;
+	
+	background-color: qlineargradient(spread:pad, x1:0, y1:0.347, x2:1, y2:0.432, stop:0 rgba(255, 0, 0, 255), stop:0.164773 rgba(255, 255, 0, 255), stop:0.329545 rgba(0, 255, 0, 255), stop:0.471591 rgba(0, 255, 255, 255), stop:0.647727 rgba(0, 0, 255, 255), stop:0.833 rgba(255, 0, 255, 255), stop:1 rgba(255, 255, 255, 255));
+
+}</string>
+     </property>
+     <property name="value">
+      <number>24</number>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="icon_frame">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>60</y>
+      <width>231</width>
+      <height>231</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/img/brush.png);</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>50</y>
+      <width>251</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Forte</family>
+      <pointsize>48</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+</string>
+    </property>
+    <property name="text">
+     <string>Canvas...</string>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources>
+  <include location="loading_screen.qrc"/>
+ </resources>
+ <connections/>
+</ui>
