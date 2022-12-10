@@ -18,7 +18,7 @@ class AppWindow(QMainWindow):
         # Set the Main Window properties
         self.setWindowTitle('Project Canvas')  # Set the window title
         self.setWindowIcon(QIcon('resources\\static\\brush.png'))  # Set the window icon
-        self.setMinimumSize(Settings.WIDTH.value, Settings.HEIGHT.value+6)  # Set the minimum size of the window
+        self.setMinimumSize(Settings.WIDTH.value, Settings.HEIGHT.value)  # Set the minimum size of the window
         # self.setMinimumSize(Settings.WIDTH.value, Settings.HEIGHT.value+Settings.TOOLBAR_HEIGHT.value+6)  # Set the minimum size of the window
         # Add 6 to the height to compensate for the menu bar
         # self.statusBar().showMessage(f'Project Canvas {snapshot}')  # Set the status bar message

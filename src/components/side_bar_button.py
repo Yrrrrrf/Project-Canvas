@@ -19,7 +19,11 @@ class SideBarButton(QPushButton):
         super().__init__()
         self.setParent(parent)
         # self.setStyleSheet('border-radius: 10%; border: 4px; background: white')
-        self.setStyleSheet(str('QPushButton {border-radius: 10%; background: white;} QPushButton:hover {background-color:'+f'{Settings.APP_COLOR.value}'+';}'))
+        style = 'QPushButton {border-radius: 10%; background: white;}'
+        hover_style = 'QPushButton:hover {border-radius: 8%; border: 3px solid '+f'{Settings.APP_COLOR.value}'+';}'
+        
+
+        self.setStyleSheet(style+hover_style)
         self.setIcon(QIcon(icon))
         self.setIconSize(QSize(self.icon_size, self.icon_size))
         self.setFixedSize(self.button_size, self.button_size)  # default size

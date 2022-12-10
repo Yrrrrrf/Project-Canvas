@@ -1,6 +1,6 @@
 from src.globals import Settings
 from PyQt6.QtWidgets import QMenuBar, QMenu, QFileDialog
-from PyQt6.QtGui import QAction, QImageReader
+from PyQt6.QtGui import QAction, QFont
 from PyQt6.QtCore import QCoreApplication
 import cv2 as cv
 from dataclasses import dataclass
@@ -14,11 +14,20 @@ class MenuBar(QMenuBar):
     '''
     def __init__(self):
         super().__init__()
-        self.setStyleSheet(f"background-color: #2d2d2d; color: white; min-height: {Settings.TOOLBAR_HEIGHT.value}px;")
+        # Set the menu bar style sheet
+        self.setFont(QFont('Segoe Print', 10, QFont.Weight.Bold))
+        menu_bar_style ='QMenuBar{background-color: #2d2d2d; color: white;} QMenuBar::item::selected{background-color: '+f'{Settings.APP_COLOR.value}'+';}'
+
+        menu_style = 'QMenu{background-color: #2d2d2d; color: white; border: 1px solid '+f'{Settings.APP_COLOR.value}'+'; margin: 1px;} QMenu::item::selected{background-color: '+f'{Settings.APP_COLOR.value}'+';}'
+        # self.setStyleSheet(menu_style)
+        self.setStyleSheet(menu_bar_style+menu_style)
         self.set_menu_bar()
 
 
     def set_menu_bar(self):
+        '''
+        Set all the QMenus and actions of the menu bar.
+        '''
         self.set_file_menu()
         self.set_edit_menu()
         self.set_view_menu()
@@ -27,6 +36,9 @@ class MenuBar(QMenuBar):
 
 
     def set_file_menu(self):
+        '''
+        Set the file menu.
+        '''
         file_menu = QMenu('File', self)
         # Add the menu to the menu bar
         select_image = QAction('Select Image', self)
@@ -54,34 +66,68 @@ class MenuBar(QMenuBar):
         self.addMenu(file_menu)
 
 
+    def set_edit_menu(self):
+        '''
+        Set the edit menu.
+        '''
+        pass
+
+
+    def set_view_menu(self):
+        '''
+        Set the view menu.
+        '''
+        view_menu = QMenu('View', self)
+        # Add the zoom in action
+        zoom_in = QAction('Zoom In', self)
+        zoom_in.setShortcut('Ctrl++')
+        zoom_in.triggered.connect(lambda: print(f'[{Settings.SNAPSHOT.value}]    Still working on it...!'))
+        view_menu.addAction(zoom_in)
+        # Add the zoom out action
+        zoom_out = QAction('Zoom Out', self)
+        zoom_out.setShortcut('Ctrl+-')
+        zoom_out.triggered.connect(lambda: print(f'[{Settings.SNAPSHOT.value}]    Still working on it...!'))
+        view_menu.addAction(zoom_out)
+        # Add change theme action
+        change_theme = QAction('Change Theme', self)
+        change_theme.setShortcut('Ctrl+T')
+        change_theme.triggered.connect(lambda: print(f'[{Settings.SNAPSHOT.value}]    Still working on it...!\n    The actual color is {Settings.APP_COLOR.value}'))
+        view_menu.addAction(change_theme)
+        # Add the menu to the menu bar
+        self.addMenu(view_menu)
+        pass
+
+
+    def set_tools_menu(self):
+        '''
+        Set the tools menu.
+        '''
+        pass
+
+    
+    def set_help_menu(self):
+        '''
+        Set the help menu.
+        '''
+        help_menu = QMenu('Help', self)
+        # Add the about action
+        about = QAction('About', self)
+        about.setShortcut('Ctrl+H')
+        about.triggered.connect(lambda: print(f'[{Settings.SNAPSHOT.value}]    Still working on it...!'))
+        help_menu.addAction(about)
+        # Add the menu to the menu bar
+        self.addMenu(help_menu)
+        # help_menu.triggered.connect(print(Settings.))
+
+
+    # todo: format the output
     def open_file(self):
+        '''
+        Open a file dialog to select an image.
+        '''
         name = QFileDialog.getOpenFileName(self, 'Open File', '.\\resources\\img','Image Files ( *.bmp  *.gif *.jpg *.jpeg *.png *.pbm *.pgm *.ppm *.xbm *.xpm)')[0]
         cv.imshow('Image', cv.imread(name))
         print(f"\nImage selected: \033[32m{name.split('/')[-1]}\x1B[37m \
                 \n    Width: {cv.imread(name).shape[1]}\
                 \n    Height: {cv.imread(name).shape[0]}\
                 \n    Channels: {cv.imread(name).shape[2]}\n")
-
-
-    def set_edit_menu(self):
-        pass
-
-
-    def set_view_menu(self):
-        pass
-
-
-    def set_tools_menu(self):
-        pass
-
-    
-    def set_help_menu(self):
-        help_menu = QMenu('Help', self)
-        # Add the about action
-        about = QAction('About', self)
-        about.setShortcut('Ctrl+H')
-        about.triggered.connect(lambda: print('Still working on it...!'))
-        help_menu.addAction(about)
-        # Add the menu to the menu bar
-        self.addMenu(help_menu)
-        # help_menu.triggered.connect(print(Settings.))
