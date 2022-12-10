@@ -1,9 +1,7 @@
 from src.components.side_bar_button import SideBarButton
-from PyQt6.QtWidgets import QWidget, QFrame, QPushButton, QStackedWidget, QHBoxLayout
-from PyQt6.QtCore import Qt, QRect
-from PyQt6.QtGui import QPainter, QPen, QImage
+from src.globals import Settings
+from PyQt6.QtWidgets import QWidget, QFrame
 from dataclasses import dataclass
-
 
 
 @dataclass
@@ -20,13 +18,8 @@ class SideBar(QFrame):  # QWidget, but temporary is a QFrame just for testing
         # todo: add the custom-buttons to the sidebar
         # todo: asociate the buttons with the actions
         self.setStyleSheet('background-color: #2d2d2d; border-radius: 8%;')
-        # side_bar = QHBoxLayout()
-        operations_layout = QFrame(self)
-
-
-        # side_bar.addWidget(operations_layout)
-        operations_layout.setStyleSheet('background-color: white; border-radius: 7%;')
-        operations_layout.setGeometry(self.margin*2+SideBarButton.button_size, 0, self.margin*2, 1000)
+        operations_frame = QFrame(self)
+        operations_frame.setStyleSheet('background-color: #dbdbdb; border-radius: 6%; border:2px solid '+f'{Settings.APP_COLOR.value}'+';}')
 
 
         self.buttons = [
@@ -38,8 +31,10 @@ class SideBar(QFrame):  # QWidget, but temporary is a QFrame just for testing
             SideBarButton('resources\\static\\nucleus.png', parent=self),
             SideBarButton('resources\\static\\nucleus.png', parent=self),
             SideBarButton('resources\\static\\nucleus.png', parent=self),
-            SideBarButton('resources\\static\\log-file.png', parent=self),
-            SideBarButton('', parent=self)
+            SideBarButton('resources\\static\\log-file.png', parent=self)
         ]
+        #  Add the buttons to the layout
         for i in range(len(self.buttons)):
             self.buttons[i].setGeometry(self.margin, self.margin+((SideBarButton.button_size+self.margin)*i), SideBarButton.button_size, SideBarButton.button_size)
+        # Add the operations
+        operations_frame.setGeometry(self.margin*2+SideBarButton.button_size, 0, self.margin*2, self.margin+self.buttons[-1].y()+SideBarButton.button_size)

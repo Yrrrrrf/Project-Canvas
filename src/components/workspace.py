@@ -30,7 +30,7 @@ class Workspace(QFrame):
         '''
         painter = QPainter(self)
         painter.setPen(QPen(Qt.GlobalColor.darkCyan, 1, Qt.PenStyle.SolidLine))
-        painter.drawImage(0, 0, QImage('resources\\img\\lena.jpg'))
+        painter.drawImage(0, 0, QImage('resources\\img\\lena.png'))
         painter.drawRect(0, 0, 1280, 720)
         painter.drawRect(16, 16, 1280, 720)
 
