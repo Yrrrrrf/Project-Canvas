@@ -17,7 +17,7 @@ if __name__ == '__main__':
     # QPushButton
     button = QPushButton('QPushButton', window)
     button.setGeometry(100, 100, 240, 240)
-    button.setStyleSheet('background-color: yellow; color: blue;')  # Set the style sheet of the button
+    button.setStyleSheet('background-color: yellow; color: blue; border-radius: 20%;')  # Set the style sheet of the button
     button.setFont(QFont('Consolas', 20, QFont.Weight.Thin))  # Set the font of the button
     button.setIcon(QIcon('pyQt6/doc/qt_logo.png'))  # Set the icon of the button
     button.setIconSize(QSize(240, 240))  # Set the size of the icon of the button

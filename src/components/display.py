@@ -1,17 +1,19 @@
-from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton, QMenu
-from PyQt6.QtWidgets import QWidget, QApplication
-from PyQt6.QtGui import QImage, QPen, QBrush, QPainter
-from PyQt6.QtCore import Qt
+from src.components.workspace import Workspace
+from src.components.side_bar import SideBar
+from PyQt6.QtWidgets import QApplication, QWidget, QApplication, QHBoxLayout
+from PyQt6.QtCore import QRect
 import sys
 from dataclasses import dataclass
-from src.components.side_bar import SideBar
-from src.components.workspace import Workspace
+import time
+
+
 
 
 @dataclass
 class Display(QWidget):
     '''
     Display class referece to the window that contains all the widgets.
+    Also manage the position of the widgets and the size of the window.
     '''
     sidebar: SideBar
     workspace: Workspace
@@ -19,21 +21,20 @@ class Display(QWidget):
 
     def __init__(self):
         super().__init__()
+        # The layout had the same name as the class because is the main layout of the application. So all the widgets will be added to this layout, and the'll be resized automatically.
+        display = QHBoxLayout()
+        self.setLayout(display)
+        self.workspace = Workspace(self)
+        self.sidebar = SideBar(self)
+        self.sidebar.setMaximumWidth(72)
+        # self.sidebar.setMaximumWidth(128)
+        display.addWidget(self.sidebar)
+        display.addWidget(self.workspace)
 
-
-    def paintEvent(self, event):
-        '''Main paint event function that draws the elements inside the window.'''
-        painter = QPainter(self)
-        painter.setPen(QPen(Qt.GlobalColor.darkCyan, 1, Qt.PenStyle.SolidLine))
-        # painter.setBrush(QBrush(Qt.GlobalColor.green, Qt.BrushStyle.BDiagPattern))
-        painter.drawImage(0, 0, QImage('resources\\img\\lena.jpg'))
-        painter.drawRect(0, 0, 1280, 720)
-        painter.drawRect(16, 16, 1280, 720)
 
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)  # Manage the GUI application's control flow and main settings.
     ui = Display()
-    # print(ui.paintEvent.__doc__)  # Print the docstring of the paintEvent function
-    ui.show()
+    # ui.show()
     sys.exit(app.exec())  # Start the event loop

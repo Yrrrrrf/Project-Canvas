@@ -1,5 +1,5 @@
 from src.components.display import Display
-from src.components.menu_bar import set_menu_bar
+from src.components.menu_bar import MenuBar
 from src.globals import Settings
 from PyQt6.QtWidgets import QApplication, QMainWindow
 from PyQt6.QtGui import QIcon
@@ -25,7 +25,8 @@ class AppWindow(QMainWindow):
         # self.setStyleSheet('background-color: #2d2d2d;')  # Set the window style sheet
 
         # Set menu bar
-        set_menu_bar(self)
+        self.menu_bar = MenuBar()
+        self.setMenuBar(self.menu_bar)
 
         # Set the central widget
         self.display = Display()
