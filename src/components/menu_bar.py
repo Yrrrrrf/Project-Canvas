@@ -55,7 +55,6 @@ class MenuBar(QMenuBar):
 
 
     def open_file(self):
-        print('Open File')
         name = QFileDialog.getOpenFileName(self, 'Open File', '.\\resources\\img','Image Files ( *.bmp  *.gif *.jpg *.jpeg *.png *.pbm *.pgm *.ppm *.xbm *.xpm)')[0]
         cv.imshow('Image', cv.imread(name))
         print(f"\nImage selected: \033[32m{name.split('/')[-1]}\x1B[37m \

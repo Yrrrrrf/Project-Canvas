@@ -16,7 +16,7 @@ Provides the main applicatioon Window. It is the top level window that contains 
 
 Is the base class of dialog windows. It provides a dialog frame with a top level window mostly used shortly for short-term tasks and brief communications with the user.
 
-### QWidget
+### [QWidget](https://doc.qt.io/qtforpython-5/PySide2/QtWidgets/index.html#module-PySide2.QtWidgets)
 
 Is the base class of all the UI objects. The widget is the important poinr of the UI, it provides mouse, keyboard and events from the window system, and it can draw itself on the screen.
 

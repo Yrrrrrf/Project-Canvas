@@ -1,13 +1,15 @@
 from src.components.workspace import Workspace
 from src.components.side_bar import SideBar
+from src.components.side_bar_button import SideBarButton
 from PyQt6.QtWidgets import QApplication, QWidget, QApplication, QHBoxLayout
 from PyQt6.QtCore import QRect
 import sys
 from dataclasses import dataclass
 import time
 
-
-
+# temp
+hident_side_bar_size = SideBar.margin*4+SideBarButton.button_size
+showing_side_bar_size = 200
 
 @dataclass
 class Display(QWidget):
@@ -26,8 +28,8 @@ class Display(QWidget):
         self.setLayout(display)
         self.workspace = Workspace(self)
         self.sidebar = SideBar(self)
-        self.sidebar.setMaximumWidth(72)
-        # self.sidebar.setMaximumWidth(128)
+        self.sidebar.setFixedWidth(hident_side_bar_size)
+        # self.sidebar.setFixedWidth(showing_side_bar_size)
         display.addWidget(self.sidebar)
         display.addWidget(self.workspace)
 

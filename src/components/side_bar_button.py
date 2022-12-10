@@ -10,6 +10,8 @@ class SideBarButton(QPushButton):
     SideBarButton class contains the icon, options and the action of the button.
     '''
     options: list[str]
+    button_size: int = 40
+    icon_size: int = 32
 
     # todo: add hover effect to the buttons
     def __init__(self, icon: str, parent):
@@ -18,6 +20,6 @@ class SideBarButton(QPushButton):
         self.setStyleSheet('border-radius: 10%; border: 4px; background: white')
         # self.options = options
         self.setIcon(QIcon(icon))
-        self.setIconSize(QSize(32, 32))
-        self.setMaximumSize(40, 40)
+        self.setIconSize(QSize(self.icon_size, self.icon_size))
+        self.setFixedSize(self.button_size, self.button_size)  # default size
         self.clicked.connect(lambda: print('clicked'))
