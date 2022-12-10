@@ -12,17 +12,18 @@ class AppWindow(QMainWindow):
     '''
     Main Window class reference to the main window of the application.
     '''
+    menu_bar: MenuBar
+    display: Display
+
     def __init__(self):
         # Create the instance of the MainWindow
         super().__init__()
         # Set the Main Window properties
-        self.setWindowTitle('Project Canvas')  # Set the window title
-        self.setWindowIcon(QIcon('resources\\static\\brush.png'))  # Set the window icon
-        self.setMinimumSize(Settings.WIDTH.value, Settings.HEIGHT.value)  # Set the minimum size of the window
-        # self.setMinimumSize(Settings.WIDTH.value, Settings.HEIGHT.value+Settings.TOOLBAR_HEIGHT.value+6)  # Set the minimum size of the window
-        # Add 6 to the height to compensate for the menu bar
-        # self.statusBar().showMessage(f'Project Canvas {snapshot}')  # Set the status bar message
-        # self.setStyleSheet('background-color: #2d2d2d;')  # Set the window style sheet
+        self.setWindowTitle('Project Canvas')
+        self.setWindowIcon(QIcon('resources\\static\\brush.png'))
+        self.setMinimumSize(Settings.WIDTH.value, Settings.HEIGHT.value)
+        # self.statusBar().showMessage(f'Project Canvas {Settings.SNAPSHOT.value}')
+        # self.setStyleSheet('background-color: #4d4d4d;')  # Set the window style sheet
 
         # Set menu bar
         self.menu_bar = MenuBar()
@@ -31,7 +32,6 @@ class AppWindow(QMainWindow):
         # Set the central widget
         self.display = Display()
         self.setCentralWidget(self.display)  # Set the central widget of the window
-
 
         # Show the window
         self.show()
