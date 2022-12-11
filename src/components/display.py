@@ -4,7 +4,7 @@ from src.components.side_bar_button import SideBarButton
 from PyQt6.QtWidgets import QApplication, QWidget, QApplication, QHBoxLayout
 from PyQt6.QtCore import QRect
 import sys
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 import time
 
 # temp
@@ -16,11 +16,12 @@ class Display(QWidget):
     Display class referece to the window that contains all the widgets.
     Also manage the position of the widgets and the size of the window.
     '''
-    workspace: Workspace
-    # these variables are used to toggle the side bar
     sidebar: SideBar
-    showing_side_bar_size = 200
-    hidden_side_bar_size: int = field(default=SideBar.margin*4+SideBarButton.button_size)
+    # these variables are used to toggle the side bar
+    hidden_side_bar_size = SideBar.margin*4+SideBarButton.button_size
+    showing_side_bar_size = 256
+
+    workspace: Workspace
 
 
     def __init__(self):
@@ -30,17 +31,17 @@ class Display(QWidget):
         self.setLayout(display)
         self.workspace = Workspace(self)
         self.sidebar = SideBar(self)
-        self.sidebar.setFixedWidth(self.hidden_side_bar_size)
-        # self.sidebar.setFixedWidth(showing_side_bar_size)
+        # self.sidebar.setFixedWidth(self.hidden_side_bar_size)
+        self.sidebar.setFixedWidth(self.showing_side_bar_size)
         display.addWidget(self.sidebar)
         display.addWidget(self.workspace)
 
 
 # def toggle_side_bar(sidebar: Display):
-#     if sidebar.width() == self.hidden_side_bar_size:
+#     if sidebar.width() == self.hident_side_bar_size:
 #         sidebar.setFixedWidth(showing_side_bar_size)
 #     else:
-#         sidebar.setFixedWidth(hidden_side_bar_size)
+#         sidebar.setFixedWidth(hident_side_bar_size)
 
 
 if __name__ == '__main__':

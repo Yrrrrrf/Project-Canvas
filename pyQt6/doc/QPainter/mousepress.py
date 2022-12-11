@@ -28,6 +28,7 @@ class Window(QWidget):
 
         self.setLayout(vbox)
 
+
     def mousePressEvent(self, event):
         if event.buttons() & Qt.MouseButton.LeftButton:
             x = self.x()
