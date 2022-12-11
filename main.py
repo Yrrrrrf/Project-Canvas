@@ -3,6 +3,7 @@ from src.components.menu_bar import MenuBar
 from src.globals import Settings
 from PyQt6.QtWidgets import QApplication, QMainWindow
 from PyQt6.QtGui import QIcon
+from PyQt6.QtCore import Qt
 import sys
 from dataclasses import dataclass
 
@@ -24,6 +25,10 @@ class AppWindow(QMainWindow):
         self.setMinimumSize(Settings.WIDTH.value, Settings.HEIGHT.value)
         # self.statusBar().showMessage(f'Project Canvas {Settings.SNAPSHOT.value}')
         # self.setStyleSheet('background-color: #4d4d4d;')  # Set the window style sheet
+
+
+        self.setGeometry(0, 0, Settings.WIDTH.value, Settings.HEIGHT.value)  # Set the window geometry
+        self.setWindowFlags(Qt.WindowType.WindowStaysOnTopHint)  # Set the window flags (remove the title bar
 
         # Set menu bar
         self.menu_bar = MenuBar()

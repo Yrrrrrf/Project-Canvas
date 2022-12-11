@@ -11,20 +11,26 @@ class SideBarButton(QPushButton):
     SideBarButton class contains the icon, options and the action of the button.
     '''
     operations: list  # image operations that the button will perform
+    data: dict
     name: str
-    icon: str
     button_size: int = 40
     icon_size: int = 32
 
 
-    def __init__(self, icon: str, side_bar: QFrame, operations_frame: QFrame):
+    def __init__(self, data: dict, side_bar: QFrame):
         super().__init__()
-        self.name = icon.split('.')[0]  # Assign the name of the button
+        # get the key name, that corresponds to the name & the icon
+        # self.name = list(data.keys())[0].split('.')[0]  # Assign the name of the button
+        self.name = list(data.keys())[0]  # Assign the name of the button
+        self.data = data[self.name]  # Assign the data of the button
+        # print(f'name: {self.name} {type(self.data)}')
+        # print(self.data)
         self.setParent(side_bar)
         button_style = 'QPushButton {border-radius: 10%; background: white;}'
         hover_style = 'QPushButton:hover {border-radius: 8%; border: 3px solid '+f'{Settings.APP_COLOR.value}'+';}'
         self.setStyleSheet(button_style + hover_style)
-        self.setIcon(QIcon(Resources.ICONS.value+icon))
+        # If there's only one file with that posible name*, then the path will be autocompleted to the file.
+        self.setIcon(QIcon(Resources.ICONS.value+self.name+'.png'))  # Just to be sure that is the format of the icon
         self.setIconSize(QSize(self.icon_size, self.icon_size))
         self.setFixedSize(self.button_size, self.button_size)  # default size
         self.operations = []

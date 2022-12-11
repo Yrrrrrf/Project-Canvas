@@ -1,6 +1,7 @@
 from src.components.side_bar_button import SideBarButton
 from src.components.operations_menu import OperationsMenu
-from src.globals import Settings, ImpOps
+from src.globals import Settings
+from src.operations import Operations
 from PyQt6.QtWidgets import QWidget, QFrame, QLabel
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QPen, QPainter, QImage, QCursor
@@ -48,15 +49,31 @@ class SideBar(QWidget):  # QWidget, but temporary is a QFrame just for testing
         # todo: asociate the buttons with the actions
         # todo: this should be a unit test!
         self.buttons = []
-        for button in ImpOps:
-            for key, value in button.value.items():
-                op_button = SideBarButton(key, self.buttons_frame, self.operations_menu)
-                op_button.setGeometry(self.margin, self.margin+((SideBarButton.button_size+self.margin)*value[0]), SideBarButton.button_size, SideBarButton.button_size)
-                op_button.clicked.connect(lambda: self.toggle_side_bar(key))
-                print(value[0])
-                self.buttons.append(op_button)
+        for button_data in Operations:
+            op_button = SideBarButton(button_data.value, self.buttons_frame)
+            op_button.setGeometry(self.margin, self.margin+((SideBarButton.button_size+self.margin)*op_button.data[0]), SideBarButton.button_size, SideBarButton.button_size)
+            # op_button.clicked.connect(lambda: self.toggle_side_bar(op_button.name))
+            self.buttons.append(op_button)
+
+
+        self.buttons[0].clicked.connect(lambda: self.toggle_side_bar(self.buttons[0].name))
+        self.buttons[1].clicked.connect(lambda: self.toggle_side_bar(self.buttons[1].name))
+        self.buttons[2].clicked.connect(lambda: self.toggle_side_bar(self.buttons[2].name))
+        self.buttons[3].clicked.connect(lambda: self.toggle_side_bar(self.buttons[3].name)) 
+        self.buttons[4].clicked.connect(lambda: self.toggle_side_bar(self.buttons[4].name))
+        self.buttons[5].clicked.connect(lambda: self.toggle_side_bar(self.buttons[5].name))
+        self.buttons[6].clicked.connect(lambda: self.toggle_side_bar(self.buttons[6].name))
+        self.buttons[7].clicked.connect(lambda: self.toggle_side_bar(self.buttons[7].name))
+        self.buttons[8].clicked.connect(lambda: self.toggle_side_bar(self.buttons[8].name))
+
+        # TODO: Why this doesn't work?!?!
         # for button in self.buttons:
-        #     print(button.name)
+        #     button.clicked.connect(lambda: self.toggle_side_bar(button.name))
+        # for i in range(len(self.buttons)):
+        #     self.buttons[i].clicked.connect(lambda: self.toggle_side_bar(self.buttons[i].name))
+
+
+
 
 
     def toggle_side_bar(self, title: str) -> None:
@@ -64,12 +81,13 @@ class SideBar(QWidget):  # QWidget, but temporary is a QFrame just for testing
         Add the toggle effect to the side bar.
         '''
         # todo: still needs an animation
+        self.operations_menu.setFixedWidth(self.margin*2)
+    
         from src.components.display import Display
         if self.width() == Display.hidden_side_bar_size:
             self.setFixedWidth(Display.showing_side_bar_size)
             self.operations_menu.setFixedWidth(Display.showing_side_bar_size-self.buttons_frame.width())
             self.show_operations_menu(title)
-            print(title)
         else:
             self.setFixedWidth(Display.hidden_side_bar_size)
             self.operations_menu.setFixedWidth(self.margin*2)
@@ -81,6 +99,5 @@ class SideBar(QWidget):  # QWidget, but temporary is a QFrame just for testing
         Show the operations menu.
         '''
         self.operations_menu.title.setText(name)
-        self.operations_menu.show()
-        print(self.operations_menu.title.text())
+        # print(self.operations_menu.title.text())
 
