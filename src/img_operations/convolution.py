@@ -124,8 +124,19 @@ def absurd_filter(img) -> np.ndarray:
     :param kernel_size: kernel size
     :return: filtered image
     '''
-    kernel = np.array([[1, 1, 1], [1, 1, 1], [1, 1, 1]])
+    kernel = np.array([[0, 0, 0], [0, 1, 0], [0, 0, 0]])
     return cv2.filter2D(img, -1, kernel)
+
+
+# def n_filter(img, kernel_size) -> np.ndarray:
+#     '''
+#     Apply a n filter to the image
+#     :param img: image to filter
+#     :param kernel_size: kernel size
+#     :return: filtered image
+#     '''
+#     kernel = np.ones((kernel_size, kernel_size), np.float32) / (kernel_size * kernel_size)  
+#     return cv2.filter2D(img, -1, kernel)
 
 
 
@@ -134,7 +145,7 @@ def absurd_filter(img) -> np.ndarray:
 
 if __name__ == '__main__':
     # * Load image
-    path = 'resources\\images\\lena.jpg'
+    path = 'resources\\img\\lena.png'
     img = cv2.imread(path)
 
     # * Test Convolutions
@@ -144,12 +155,13 @@ if __name__ == '__main__':
     cv2.imshow('Mean', mean_filter(img, 3))
     cv2.imshow('Median', median_filter(img, 3))
     cv2.imshow('Laplacian', laplacian_filter(img, 3))
-    cv2.imshow('Ordered Range', ordered_range_filter(img, 3))
-    cv2.imshow('Bilateral', bilateral_filter(img, 3))
+    # cv2.imshow('Ordered Range', ordered_range_filter(img, 3))
+    # cv2.imshow('Bilateral', bilateral_filter(img, 3))
     cv2.imshow('Sobel', sobel_filter(img, 3))
     cv2.imshow('Emboss', emboss_filter(img, 3))
     cv2.imshow('Edge', edge_filter(img, 3))
     cv2.imshow('Absurd', absurd_filter(img))
+    # cv2.imshow('N', n_filter(img, 3))
 
 
     cv2.waitKey(0)

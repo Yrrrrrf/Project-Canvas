@@ -43,8 +43,6 @@ class OperationsMenu(QFrame):
         self.title.setText(title)
         # todo: recenter the title label
         self.title.setGeometry(16, 16, self.width(), 32)
-
-        # self.title.setGeometry(16, 16, self.width(), 32)
         # center the title label
 
 

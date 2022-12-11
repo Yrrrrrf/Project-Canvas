@@ -69,10 +69,10 @@ def test_histogram():
     '''
     # todo: implement histogram test!
     assert histogram.equalize_img(None) is None
-    # assert histogram.shrink_img(None) is None
-    # assert histogram.stretch_img(None) is None
-    # assert histogram.equalize_hist_rgb(None) is None
-    pass
+    assert histogram.equalize_hist_rgb(None) is None
+    # assert histogram.resize_img_scale(None) is None
+    # assert histogram.resize_img(None) is None
+
 
 
 def test_noise():

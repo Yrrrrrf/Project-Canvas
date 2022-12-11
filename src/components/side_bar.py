@@ -37,10 +37,8 @@ class SideBar(QWidget):  # QWidget, but temporary is a QFrame just for testing
         # todo: add this as a function in the menu_bar
         # self.setFixedHeight(self.margin+self.buttons[-1].y()+SideBarButton.button_size)
 
-        self.setFixedWidth(300)
         self.operations_menu.setFixedWidth(256-self.buttons_frame.width())
-
-
+        # self.operations_menu.setFixedHeight(self.height())
 
     def load_buttons(self) -> None:
         '''

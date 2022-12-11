@@ -158,16 +158,16 @@ if __name__ == '__main__':
 
     # * Test noise
     cv2.imshow('original', img)
-    cv2.imshow('gaussian noise', gaussian_noise(img))
+    # cv2.imshow('gaussian noise', gaussian_noise(img))
+    cv2.imshow('s&p noise', salt_pepper_noise(img))
     cv2.imshow('salt noise', salt_noise(img))
     cv2.imshow('pepper noise', pepper_noise(img))
-    cv2.imshow('s&p noise', salt_pepper_noise(img))
-    cv2.imshow('speckle noise', speckle_noise(img))
+    # cv2.imshow('speckle noise', speckle_noise(img))
     cv2.imshow('rayleigh noise', rayleigh_noise(img))
     cv2.imshow('laplace noise', laplace_noise(img))
-    cv2.imshow('poisson noise', poisson_noise(img))
-    cv2.imshow('uniform noise', uniform_noise(img))
-    cv2.imshow('exponential noise', exponential_noise(img))
+    # cv2.imshow('poisson noise', poisson_noise(img))
+    # cv2.imshow('uniform noise', uniform_noise(img))
+    # cv2.imshow('exponential noise', exponential_noise(img))
 
 
     cv2.waitKey(0) 

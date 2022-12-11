@@ -4,7 +4,7 @@ import cv2 as cv
 path = 'resources\\static\\brush_256.png'
 
 
-def equalize_hist(img) -> np.ndarray:
+def equalize_img(img) -> np.ndarray:
     '''
     Equalize the histogram of the image
     :param img: image to equalize
@@ -20,7 +20,7 @@ def equalize_hist(img) -> np.ndarray:
 if __name__ == '__main__':
     img = cv.imread(path)
     cv.imshow('image', img)
-    cv.imshow('equalized', equalize_hist(img))
+    cv.imshow('equalized', equalize_img(img))
     
 
     cv.waitKey(0)

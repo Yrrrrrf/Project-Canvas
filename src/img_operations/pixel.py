@@ -184,12 +184,12 @@ if __name__ == '__main__':
     cv2.imshow('Clear zone', clear_zone(img, 100, 100, 100, 100))
     cv2.imshow('Brightness', change_brightness(img, 50))
     cv2.imshow('Contrast', change_contrast(img, 50))
-    cv2.imshow('Logarithmic transform', logarithmic_transform(img))
-    cv2.imshow('Power transformation', power_transformation(img))
-    cv2.imshow('Exponential transform', exponential_transform(img))
+    # cv2.imshow('Logarithmic transform', logarithmic_transform(img))
+    # cv2.imshow('Power transformation', power_transformation(img))
+    # cv2.imshow('Exponential transform', exponential_transform(img))
     cv2.imshow('Gamma correction', gamma_correction(img))
     cv2.imshow('Power law transform', power_law_transform(img))
-    cv2.imshow('Piecewise linear transform', piecewise_linear_transform(img, 50, 0, 200, 255))
+    # cv2.imshow('Piecewise linear transform', piecewise_linear_transform(img, 50, 0, 200, 255))
 
 
     cv2.waitKey(0)
