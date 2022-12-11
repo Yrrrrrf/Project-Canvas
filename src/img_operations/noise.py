@@ -2,7 +2,7 @@ import numpy as np
 import cv2
 
 
-def add_gaussian_noise(img, mean=0, sigma=0.1) -> np.ndarray:
+def gaussian_noise(img, mean=0, sigma=0.1) -> np.ndarray:
     '''
     Add gaussian noise to the image
     :param img: image to add noise
@@ -17,7 +17,7 @@ def add_gaussian_noise(img, mean=0, sigma=0.1) -> np.ndarray:
     return noisy
 
 
-def add_salt_noise(img, prob=0.05) -> np.ndarray:
+def salt_noise(img, prob=0.05) -> np.ndarray:
     '''
     Add salt noise to the image
     :param img: image to add noise
@@ -36,7 +36,7 @@ def add_salt_noise(img, prob=0.05) -> np.ndarray:
     return output
 
 
-def add_pepper_noise(img, prob=0.05) -> np.ndarray:
+def pepper_noise(img, prob=0.05) -> np.ndarray:
     '''
     Add pepper noise to the image
     :param img: image to add noise
@@ -55,7 +55,7 @@ def add_pepper_noise(img, prob=0.05) -> np.ndarray:
     return output
 
 
-def add_salt_pepper_noise(img, prob=0.05) -> np.ndarray:
+def salt_pepper_noise(img, prob=0.05) -> np.ndarray:
     '''
     Add salt and pepper noise to the image
     :param img: image to add noise
@@ -76,7 +76,7 @@ def add_salt_pepper_noise(img, prob=0.05) -> np.ndarray:
     return output
 
 
-def add_speckle_noise(img, prob=0.05) -> np.ndarray:
+def speckle_noise(img, prob=0.05) -> np.ndarray:
     '''
     Add speckle noise to the image
     :param img: image to add noise
@@ -90,7 +90,7 @@ def add_speckle_noise(img, prob=0.05) -> np.ndarray:
     return noisy
 
 
-def add_rayleigh_noise(img, sigma=0.1) -> np.ndarray:
+def rayleigh_noise(img, sigma=0.1) -> np.ndarray:
     '''
     Add rayleigh noise to the image
     :param img: image to add noise
@@ -101,7 +101,7 @@ def add_rayleigh_noise(img, sigma=0.1) -> np.ndarray:
     return noisy
 
 
-def add_laplace_noise(img, loc=0, scale=0.1) -> np.ndarray:
+def laplace_noise(img, loc=0, scale=0.1) -> np.ndarray:
     '''
     Add laplace noise to the image
     :param img: image to add noise
@@ -113,7 +113,7 @@ def add_laplace_noise(img, loc=0, scale=0.1) -> np.ndarray:
     return noisy
 
 
-def add_poisson_noise(img, lambd=0.1) -> np.ndarray:
+def poisson_noise(img, lambd=0.1) -> np.ndarray:
     '''
     Add poisson noise to the image
     :param img: image to add noise
@@ -124,7 +124,7 @@ def add_poisson_noise(img, lambd=0.1) -> np.ndarray:
     return noisy
 
 
-def add_uniform_noise(img, a=-0.5, b=0.5) -> np.ndarray:
+def uniform_noise(img, a=-0.5, b=0.5) -> np.ndarray:
     '''
     Add uniform noise to the image
     :param img: image to add noise
@@ -139,7 +139,7 @@ def add_uniform_noise(img, a=-0.5, b=0.5) -> np.ndarray:
     return noisy
 
 
-def add_exponential_noise(img, lambd=0.1) -> np.ndarray:
+def exponential_noise(img, lambd=0.1) -> np.ndarray:
     '''
     Add exponential noise to the image
     :param img: image to add noise
@@ -158,16 +158,16 @@ if __name__ == '__main__':
 
     # * Test noise
     cv2.imshow('original', img)
-    cv2.imshow('gaussian noise', add_gaussian_noise(img))
-    cv2.imshow('salt noise', add_salt_noise(img))
-    cv2.imshow('pepper noise', add_pepper_noise(img))
-    cv2.imshow('s&p noise', add_salt_pepper_noise(img))
-    cv2.imshow('speckle noise', add_speckle_noise(img))
-    cv2.imshow('rayleigh noise', add_rayleigh_noise(img))
-    cv2.imshow('laplace noise', add_laplace_noise(img))
-    cv2.imshow('poisson noise', add_poisson_noise(img))
-    cv2.imshow('uniform noise', add_uniform_noise(img))
-    cv2.imshow('exponential noise', add_exponential_noise(img))
+    cv2.imshow('gaussian noise', gaussian_noise(img))
+    cv2.imshow('salt noise', salt_noise(img))
+    cv2.imshow('pepper noise', pepper_noise(img))
+    cv2.imshow('s&p noise', salt_pepper_noise(img))
+    cv2.imshow('speckle noise', speckle_noise(img))
+    cv2.imshow('rayleigh noise', rayleigh_noise(img))
+    cv2.imshow('laplace noise', laplace_noise(img))
+    cv2.imshow('poisson noise', poisson_noise(img))
+    cv2.imshow('uniform noise', uniform_noise(img))
+    cv2.imshow('exponential noise', exponential_noise(img))
 
 
     cv2.waitKey(0) 

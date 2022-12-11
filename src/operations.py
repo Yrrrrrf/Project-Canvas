@@ -1,4 +1,8 @@
 from enum import Enum
+import src.img_operations.convolution as convolution
+import src.img_operations.histogram as histogram
+import src.img_operations.noise as noise
+import src.img_operations.pixel as pixel
 
 
 class Operations(Enum):

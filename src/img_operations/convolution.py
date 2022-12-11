@@ -144,6 +144,7 @@ if __name__ == '__main__':
     cv2.imshow('Mean', mean_filter(img, 3))
     cv2.imshow('Median', median_filter(img, 3))
     cv2.imshow('Laplacian', laplacian_filter(img, 3))
+    cv2.imshow('Ordered Range', ordered_range_filter(img, 3))
     cv2.imshow('Bilateral', bilateral_filter(img, 3))
     cv2.imshow('Sobel', sobel_filter(img, 3))
     cv2.imshow('Emboss', emboss_filter(img, 3))
