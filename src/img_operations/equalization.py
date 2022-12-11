@@ -20,7 +20,7 @@ def equalize_hist(img) -> np.ndarray:
 if __name__ == '__main__':
     img = cv.imread(path)
     cv.imshow('image', img)
-    img = equalize_hist(img)
-    cv.imshow('equalized', img)
+    cv.imshow('equalized', equalize_hist(img))
+    
 
     cv.waitKey(0)
