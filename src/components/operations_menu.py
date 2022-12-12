@@ -1,10 +1,8 @@
 from src.globals import Settings
-# from src.components.operation_button import OperationButton
 from PyQt6.QtWidgets import QWidget, QFrame, QLabel
 from PyQt6.QtGui import QPen, QPainter, QFont
 from PyQt6.QtCore import Qt
 from dataclasses import dataclass
-# import typing
 
 
 @dataclass
@@ -13,21 +11,23 @@ class OperationsMenu(QFrame):
     Operations menu contains the operations that can be applied to the image.
     These operations are displayed as buttons.
     '''
-    side_bar: QWidget  # parent widget
+    side_bar: QWidget  # ? Parent Widget
     title: QLabel
-    # operations: list[OperationButton]
+    deployed: bool = False  # ? Whether the operations menu is deployed or not
+    # showing_size = 256  # todo: make this a 
 
 
     def __init__(self, side_bar: QWidget):
         '''
         Initialize the operations menu.
-
         '''
         super().__init__(side_bar)
-        self.setStyleSheet('QFrame{background-color: #dbdbdb; border-radius: 6%; border: 2px solid '+f'{Settings.APP_COLOR.value}'+';}')
-        self.set_title('Testing...')
-        self.title.setStyleSheet('QLabel {color: #2d2d2d; font-size: 16px; font-weight: bold;}')
-
+        self.setStyleSheet('QFrame {background-color: #dbdbdb; border-radius: 6%; border: 2px solid '+f'{Settings.APP_COLOR.value}'+';}')
+        self.title = QLabel('Testing...', self)
+        self.title.setStyleSheet('QLabel {color: white;}')
+        self.title.setFont(QFont('Segoe Print', 16, QFont.Weight.Bold))
+        self.title.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.title.setGeometry(16, 12, self.width(), 32)
 
     def paintEvent(self, event):
         '''
@@ -47,14 +47,23 @@ class OperationsMenu(QFrame):
         self.title.setFont(QFont('Segoe Print', 10, QFont.Weight.Bold))
         self.title.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.title.setText(title)
-        # todo: recenter the title label
         self.title.setGeometry(16, 16, self.width(), 32)
-        # center the title label
 
 
-    def set_operations(self, operations: list[str]) -> None:
+    def deploy(self) -> None:
         '''
-        Set the operations of the operations menu.
+        Deploy the operations menu.
+        Also update's the operations that are displayed.
         '''
-        pass
-    
+        self.deployed = True
+        self.setFixedWidth(240)
+
+
+    def hide(self) -> None:
+        '''
+        Hide the operations menu.
+        '''
+        from src.components.side_bar import SideBar
+        self.deployed = False
+        self.setFixedWidth(SideBar.margin*2)
+

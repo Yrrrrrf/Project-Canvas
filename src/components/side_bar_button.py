@@ -1,4 +1,4 @@
-from PyQt6.QtWidgets import QPushButton, QFrame
+from PyQt6.QtWidgets import QPushButton, QWidget
 from src.globals import Settings, Resources
 from PyQt6.QtGui import QIcon
 from PyQt6.QtCore import QSize
@@ -8,21 +8,21 @@ from dataclasses import dataclass
 @dataclass
 class SideBarButton(QPushButton):
     '''
-    SideBarButton class contains the icon, options and the action of the button.
+    SideBarButton class contains a list of operations that can be executed to an image.
+    Every operation is a button will appear in the Operations Menu.
     '''
-    operations: list  # image operations that the button will perform
-    name: str
-    data: list[dict]
+    side_bar: QWidget  # ? Parent Widget
+    name: str  # ? name corresponds to the Operation type (Enum)
+    operations: list[dict]  # ? list of operations
     button_size: int = 40
     icon_size: int = 32
 
 
-    def __init__(self, name: str, operations: list[dict], side_bar: QFrame):
+    def __init__(self, name: str, operations: list[dict], side_bar: QWidget):
         super().__init__()
+        from src.components.side_bar import SideBar  # this import is there to avoid circular imports
         self.name = name
         self.operations = operations
-        # print(f'name: {self.name} {type(self.data)}')
-        # print(self.data)
         self.setParent(side_bar)
         button_style = 'QPushButton {border-radius: 10%; background: white;}'
         hover_style = 'QPushButton:hover {border-radius: 8%; border: 3px solid '+f'{Settings.APP_COLOR.value}'+';}'
@@ -32,14 +32,14 @@ class SideBarButton(QPushButton):
         self.setIconSize(QSize(self.icon_size, self.icon_size))
         self.setFixedSize(self.button_size, self.button_size)  # default size
 
-        
-        # *If there's more than one file with the same name, then the path will be autocompleted to the folder.
-        self.clicked.connect(lambda: self.toggle_side_bar(self.name))
+        self.clicked.connect(lambda: self.toggle_side_bar())
 
 
+    def toggle_side_bar(self) -> None:
+        '''
+        Add the toggle effect to the side bar.
+        Every time the button is clicked, the side bar will be updated to show the Operations according to the button.
+        '''
+        from src.components.display import Display  # this import is there to avoid circular imports
+        print(f'{self.name} menu Opened')
 
-
-    def toggle_side_bar(self, name: str):
-        from src.components.side_bar import SideBar  # this import is there to avoid circular imports
-        
-        print(f'{name} menu Opened')

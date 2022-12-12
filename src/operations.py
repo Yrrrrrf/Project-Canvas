@@ -85,18 +85,11 @@ class Operations(Enum):
         {'log_4': None},
     ]
 
-    NUCLEUS_1 = [
+    NUCLEUS = [
         {'nucleus_1': None},
         {'nucleus_2': None},
         {'nucleus_3': None},
         {'nucleus_4': None},
-    ]
-
-    NUCLEUS_2 = [
-        {'nucleus2_1': None},
-        {'nucleus2_2': None},
-        {'nucleus2_3': None},
-        {'nucleus2_4': None},
     ]
 
 
