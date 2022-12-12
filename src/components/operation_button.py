@@ -1,6 +1,6 @@
-from src.globals import Settings, Resources
+from src.globals import Settings
 from PyQt6.QtWidgets import QPushButton, QWidget
-from PyQt6.QtGui import QIcon, QFont, QColor
+from PyQt6.QtGui import QIcon, QFont
 from PyQt6.QtCore import QSize
 from dataclasses import dataclass
 
@@ -29,17 +29,18 @@ class OperationButton(QPushButton):
         self.setFont(QFont('Segoe Print', 10, QFont.Weight.Bold))
         # self.setIcon(QIcon(Resources.ICONS.value+icon))
         self.setIconSize(QSize(self.icon_size, self.icon_size))
-        self.setFixedSize(122, self.button_height)
+        # self.setFixedSize(122, self.button_height)
         self.setText(self.operation)
 
-        self.set_operation(operation[self.operation])
+        self.set_operation()
 
 
-    def set_operation(self, operation: list[dict]) -> None:
+    def set_operation(self) -> None:
         '''
         Set the operation of the button.
         '''
-
-        print(self.operation)
+        # self.operation = operation
+        self.clicked.connect(lambda: print(self.operation))
+        # print(self.operation)
         # self.setFixedSize(self.parent.width(), self.button_size * len(operations))  # default size
 

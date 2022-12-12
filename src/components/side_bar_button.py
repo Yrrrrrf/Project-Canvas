@@ -14,8 +14,8 @@ class SideBarButton(QPushButton):
     side_bar: QWidget  # ? Parent Widget
     name: str  # ? name corresponds to the Operation type (Enum)
     operations: list[dict]  # ? list of operations
-    button_size: int = 40
-    icon_size: int = 32
+    button_size: int = 48
+    icon_size: int = 40
 
 
     def __init__(self, name: str, operations: list[dict], side_bar: QWidget):

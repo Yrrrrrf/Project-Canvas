@@ -23,37 +23,7 @@ class OperationsMenu(QStackedWidget):
         Initialize the operations menu.
         '''
         super().__init__(side_bar)
-        self.setStyleSheet('QFrame {background-color: #dbdbdb; border-radius: 6%; border: 2px solid '+f'{Settings.APP_COLOR.value}'+';}')
-        self.title = QLabel(self)
-        self.set_title('Testing...')
-        # OperationButton(self, {}).setGeometry(0, 0, 200, 32)
-
-        # QPushButton(self).setGeometry(0, 0, 200, 32)
-        # OperationButton(self, {}).setGeometry(0, 0, 200, 32)
-        # b = OperationButton(self, {})
-        # b.setGeometry(30, 100, 200, 200)
-
-
-    def paintEvent(self, event):
-        '''
-        Main paint event function that draws the elements inside the window.
-        '''
-        painter = QPainter(self)
-        painter.setPen(QPen(Qt.GlobalColor.darkCyan, 1, Qt.PenStyle.SolidLine))
-        # painter.drawRect(16, 16, 1280, 720)
-
-
-    def set_title(self, title: str) -> None:
-        '''
-        Set the title of the operations menu.
-        Every time the title is changed, the title label is recentered.
-        '''
-        from src.components.side_bar import SideBar
-        self.title.setText(title)
-        self.title.setStyleSheet('QLabel {color: white;}')
-        self.title.setFont(QFont('Segoe Print', 16, QFont.Weight.Bold))
-        self.title.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.title.setGeometry(SideBar.margin*3, 12, self.showing_size-SideBar.margin*6, 32)
+        self.hide()  # ? Hide the operations menu by default
 
 
     def deploy(self) -> None:
@@ -72,15 +42,4 @@ class OperationsMenu(QStackedWidget):
         from src.components.side_bar import SideBar
         self.deployed = False
         self.setFixedWidth(SideBar.margin*2)
-
-
-
-    def load_operation_buttons(self, operations: list[dict]) -> None:
-        '''
-        The operations buttons are loaded from the operations_menu class.
-        '''
-        # buttons = []
-        for operation in operations:
-            self.update()
-            # self.operations_menu.add_button(operation)
 
