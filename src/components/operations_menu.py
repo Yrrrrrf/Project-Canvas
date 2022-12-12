@@ -14,7 +14,7 @@ class OperationsMenu(QFrame):
     side_bar: QWidget  # ? Parent Widget
     title: QLabel
     deployed: bool = False  # ? Whether the operations menu is deployed or not
-    # showing_size = 256  # todo: make this a 
+    showing_size = 240  # ? The width of the operations menu when it is deployed
 
 
     def __init__(self, side_bar: QWidget):
@@ -23,11 +23,9 @@ class OperationsMenu(QFrame):
         '''
         super().__init__(side_bar)
         self.setStyleSheet('QFrame {background-color: #dbdbdb; border-radius: 6%; border: 2px solid '+f'{Settings.APP_COLOR.value}'+';}')
-        self.title = QLabel('Testing...', self)
-        self.title.setStyleSheet('QLabel {color: white;}')
-        self.title.setFont(QFont('Segoe Print', 16, QFont.Weight.Bold))
-        self.title.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.title.setGeometry(16, 12, self.width(), 32)
+        self.title = QLabel(self)
+        self.set_title('Testing...')
+
 
     def paintEvent(self, event):
         '''
@@ -43,11 +41,12 @@ class OperationsMenu(QFrame):
         Set the title of the operations menu.
         Every time the title is changed, the title label is recentered.
         '''
-        self.title = QLabel(self)
-        self.title.setFont(QFont('Segoe Print', 10, QFont.Weight.Bold))
-        self.title.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        from src.components.side_bar import SideBar
         self.title.setText(title)
-        self.title.setGeometry(16, 16, self.width(), 32)
+        self.title.setStyleSheet('QLabel {color: white;}')
+        self.title.setFont(QFont('Segoe Print', 16, QFont.Weight.Bold))
+        self.title.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.title.setGeometry(SideBar.margin*3, 12, self.showing_size-SideBar.margin*6, 32)
 
 
     def deploy(self) -> None:
@@ -56,7 +55,7 @@ class OperationsMenu(QFrame):
         Also update's the operations that are displayed.
         '''
         self.deployed = True
-        self.setFixedWidth(240)
+        self.setFixedWidth(self.showing_size)
 
 
     def hide(self) -> None:

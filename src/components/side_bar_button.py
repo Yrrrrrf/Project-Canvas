@@ -32,14 +32,3 @@ class SideBarButton(QPushButton):
         self.setIconSize(QSize(self.icon_size, self.icon_size))
         self.setFixedSize(self.button_size, self.button_size)  # default size
 
-        self.clicked.connect(lambda: self.toggle_side_bar())
-
-
-    def toggle_side_bar(self) -> None:
-        '''
-        Add the toggle effect to the side bar.
-        Every time the button is clicked, the side bar will be updated to show the Operations according to the button.
-        '''
-        from src.components.display import Display  # this import is there to avoid circular imports
-        print(f'{self.name} menu Opened')
-

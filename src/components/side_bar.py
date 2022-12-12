@@ -4,8 +4,6 @@ from src.components.operation_button import OperationButton
 from src.globals import Settings
 from src.operations import Operations
 from PyQt6.QtWidgets import QWidget, QFrame
-# from PyQt6.QtCore import Qt
-# from PyQt6.QtGui import QPen, QPainter, QImage, QCursor
 from dataclasses import dataclass
 
 
@@ -46,8 +44,20 @@ class SideBar(QWidget):  # QWidget, but temporary is a QFrame just for testing
             self.buttons.append(op_button)
             i+=1
 
+        # ? Connect the buttons to the toggle function
+        self.buttons[0].clicked.connect(lambda: self.toggle(self.buttons[0].name, self.buttons[0].operations))
+        self.buttons[1].clicked.connect(lambda: self.toggle(self.buttons[1].name, self.buttons[1].operations))
+        self.buttons[2].clicked.connect(lambda: self.toggle(self.buttons[2].name, self.buttons[2].operations))
+        self.buttons[3].clicked.connect(lambda: self.toggle(self.buttons[3].name, self.buttons[3].operations)) 
+        self.buttons[4].clicked.connect(lambda: self.toggle(self.buttons[4].name, self.buttons[4].operations))
+        self.buttons[5].clicked.connect(lambda: self.toggle(self.buttons[5].name, self.buttons[5].operations))
+        self.buttons[6].clicked.connect(lambda: self.toggle(self.buttons[6].name, self.buttons[6].operations))
+        self.buttons[7].clicked.connect(lambda: self.toggle(self.buttons[7].name, self.buttons[7].operations))
+        # for button in self.buttons:
+        #     button.clicked.connect(lambda: self.toggle(button.name))
 
-    def toggle(self) -> None:
+
+    def toggle(self, name: str, operations: list[dict]) -> None:
         '''
         Toggle the Operations Menu. (show/hide)
         '''
@@ -55,10 +65,11 @@ class SideBar(QWidget):  # QWidget, but temporary is a QFrame just for testing
             self.operations_menu.hide()  # hide the operations menu
             self.setFixedWidth(self.margin*4+SideBarButton.button_size)
         else:  # if the operations menu is hidden
+            self.operations_menu.title.setText(name.lower())  # ? update the title of the operations menu
             self.operations_menu.deploy()  # show the operations menu
             self.setFixedWidth(self.margin*2+SideBarButton.button_size+self.operations_menu.width())
-
             self.update_operations_menu()  # update the operations menu
+        print(name.lower())
 
 
     def update_operations_menu(self) -> None:
