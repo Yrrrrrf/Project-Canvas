@@ -1,4 +1,5 @@
 from src.globals import Settings
+from src.components.workspace import Workspace
 from PyQt6.QtWidgets import QMenuBar, QMenu, QFileDialog
 from PyQt6.QtGui import QAction, QFont
 from PyQt6.QtCore import QCoreApplication
@@ -54,7 +55,15 @@ class MenuBar(QMenuBar):
         save_image_as = QAction('Save Image As', self)
         save_image_as.setShortcut('Ctrl+Shift+S')
         file_menu.addAction(save_image_as)
-        # Add a separator
+        # Add Separator
+        file_menu.addSeparator()
+        # Add Save Project action
+        random_image = QAction('Random Image', self)
+        random_image.setShortcut('Ctrl+R')
+        # todo: complete this
+        # random_image.triggered.connect(lambda: Workspace.load)
+        file_menu.addAction(random_image)
+        # Add Separator
         file_menu.addSeparator()
         # Add Exit action
         exit_app = QAction('Exit', self)

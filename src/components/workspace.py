@@ -27,6 +27,7 @@ class Workspace(QFrame):
 
         # self.stock_img = load_cat()  # return the memory address of the image
         self.stock_img = 'resources\\img\\lena.png'
+        # self.visualizer = [Visualizer(self, self.stock_img)]
 
 
     def paintEvent(self, event):

@@ -1,12 +1,13 @@
 from src.globals import Settings
-from PyQt6.QtWidgets import QWidget, QFrame, QLabel
+from src.components.operation_button import OperationButton
+from PyQt6.QtWidgets import QWidget, QFrame, QLabel, QStackedWidget, QPushButton
 from PyQt6.QtGui import QPen, QPainter, QFont
 from PyQt6.QtCore import Qt
 from dataclasses import dataclass
 
 
 @dataclass
-class OperationsMenu(QFrame):
+class OperationsMenu(QStackedWidget):
     '''
     Operations menu contains the operations that can be applied to the image.
     These operations are displayed as buttons.
@@ -25,6 +26,12 @@ class OperationsMenu(QFrame):
         self.setStyleSheet('QFrame {background-color: #dbdbdb; border-radius: 6%; border: 2px solid '+f'{Settings.APP_COLOR.value}'+';}')
         self.title = QLabel(self)
         self.set_title('Testing...')
+        # OperationButton(self, {}).setGeometry(0, 0, 200, 32)
+
+        # QPushButton(self).setGeometry(0, 0, 200, 32)
+        # OperationButton(self, {}).setGeometry(0, 0, 200, 32)
+        # b = OperationButton(self, {})
+        # b.setGeometry(30, 100, 200, 200)
 
 
     def paintEvent(self, event):
@@ -65,4 +72,15 @@ class OperationsMenu(QFrame):
         from src.components.side_bar import SideBar
         self.deployed = False
         self.setFixedWidth(SideBar.margin*2)
+
+
+
+    def load_operation_buttons(self, operations: list[dict]) -> None:
+        '''
+        The operations buttons are loaded from the operations_menu class.
+        '''
+        # buttons = []
+        for operation in operations:
+            self.update()
+            # self.operations_menu.add_button(operation)
 
