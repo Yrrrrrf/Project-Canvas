@@ -1,10 +1,10 @@
-from src.components.side_bar_button import SideBarButton
-from src.components.operations_menu import OperationsMenu
-from src.components.operation_button import OperationButton
 from src.globals import Settings
 from src.operations import Operations
+from src.components.side_bar_button import SideBarButton
+from src.components.operations_menu import OperationsMenu
+from src.components.operations_page import OperationsPage
+from src.components.operation_button import OperationButton
 from PyQt6.QtWidgets import QWidget, QFrame
-from PyQt6.QtCore import Qt, QTimer
 from dataclasses import dataclass
 
 
@@ -38,55 +38,57 @@ class SideBar(QWidget):  # QWidget, but temporary is a QFrame just for testing
         '''
         Load the buttons of the side bar.
         Every buttons is associated to a Operations Menu, that contains many operations.
-        
         '''
+        self.operations_menu = OperationsMenu(self)  # Is a stack widget that contains the operations
         self.buttons = []
+
         i = 0
         for operation in Operations:
             op_button = SideBarButton(operation.name, operation.value, self.buttons_frame)
             op_button.setGeometry(self.margin, self.margin+((SideBarButton.button_size+self.margin)*i), SideBarButton.button_size, SideBarButton.button_size)
             self.buttons.append(op_button)
+            self.operations_menu.addWidget(OperationsPage(self.operations_menu, op_button.name, operation.value))
             i+=1
 
         # ? Connect the buttons to the toggle function
-        self.buttons[0].clicked.connect(lambda: self.toggle(self.buttons[0].name, self.buttons[0].operations))
-        self.buttons[1].clicked.connect(lambda: self.toggle(self.buttons[1].name, self.buttons[1].operations))
-        self.buttons[2].clicked.connect(lambda: self.toggle(self.buttons[2].name, self.buttons[2].operations))
-        self.buttons[3].clicked.connect(lambda: self.toggle(self.buttons[3].name, self.buttons[3].operations)) 
-        self.buttons[4].clicked.connect(lambda: self.toggle(self.buttons[4].name, self.buttons[4].operations))
-        self.buttons[5].clicked.connect(lambda: self.toggle(self.buttons[5].name, self.buttons[5].operations))
-        self.buttons[6].clicked.connect(lambda: self.toggle(self.buttons[6].name, self.buttons[6].operations))
-        self.buttons[7].clicked.connect(lambda: self.toggle(self.buttons[7].name, self.buttons[7].operations))
+        self.buttons[0].clicked.connect(lambda: self.toggle(0))
+        self.buttons[1].clicked.connect(lambda: self.toggle(1))
+        self.buttons[2].clicked.connect(lambda: self.toggle(2))
+        self.buttons[3].clicked.connect(lambda: self.toggle(3)) 
+        self.buttons[4].clicked.connect(lambda: self.toggle(4))
+        self.buttons[5].clicked.connect(lambda: self.toggle(5))
+        self.buttons[6].clicked.connect(lambda: self.toggle(6))
+        self.buttons[7].clicked.connect(lambda: self.toggle(7))
         # ! why this doesn't work?!?!
-        # for button in self.buttons:
-        #     button.clicked.connect(lambda: self.toggle(button.name))
+        # for i in range(len(self.buttons)):
+            # self.buttons[i].clicked.connect(lambda: self.toggle(i))
 
         # ? set the operations_menu on the right side of the buttons_frame
-        self.operations_menu = OperationsMenu(self)  # Is a stack widget that contains the operations
         self.operations_menu.setGeometry(self.margin*2+SideBarButton.button_size, 0, self.margin*2, self.margin+self.buttons[-1].y()+SideBarButton.button_size)
 
 
-
-    def toggle(self, name: str, operations: list[dict]) -> None:
+    def toggle(self, page_index: int) -> None:
         '''
         Toggle the Operations Menu. (show/hide)
         Update the title & buttons of the operations menu.
         '''
-        # self.operations_menu.deleteLater()
-        # self.operations_menu = OperationsMenu(self)
         if self.operations_menu.deployed == True:  # if the operations menu is deployed
-            self.operations_menu.hide()  # hide the operations menu
-            self.setFixedWidth(self.margin*4+SideBarButton.button_size)
-            # ? delete all the operation buttons
-            print(f'Hide {name}, this shlould delete all the Ops buttons')
+            if self.operations_menu.currentIndex() == page_index:
+                self.operations_menu.hide()  # hide the operations menu
+                self.operations_menu.setFixedHeight(self.margin+self.buttons[-1].y()+SideBarButton.button_size)
+                self.setFixedWidth(self.margin*4+SideBarButton.button_size)
+            else:  # if the operations menu is deployed, but the user clicked on a different button
+                self.operations_menu.setCurrentIndex(page_index)
         else:  # if the operations menu is hidden
-            self.operations_menu.title.setText(name.lower())  # ? update the title of the operations menu
+            self.operations_menu.setCurrentIndex(page_index)
+
+
+            # ! change hegith
+            print(len(self.buttons[page_index].operations))
+
+
             self.operations_menu.deploy()  # show the operations menu
             self.setFixedWidth(self.margin*2+SideBarButton.button_size+self.operations_menu.width())
-            # ? load the operation buttons when the operations menu is deployed
-            self.operations_menu.load_operation_buttons(operations)
-            print(f'Deploy {name}, this shlould load the Ops buttons')
-            OperationButton(self, {'c': lambda: print('c')}).setGeometry(0, 64, 2000, 32)
 
 
     def center_side_bar(self) -> None:
