@@ -1,7 +1,8 @@
-from PyQt6.QtWidgets import QWidget, QFrame, QLabel
-from PyQt6.QtCore import Qt
-from PyQt6.QtGui import QPen, QPainter, QImage, QCursor, QFont
 from src.globals import Settings
+# from src.components.operation_button import OperationButton
+from PyQt6.QtWidgets import QWidget, QFrame, QLabel
+from PyQt6.QtGui import QPen, QPainter, QFont
+from PyQt6.QtCore import Qt
 from dataclasses import dataclass
 # import typing
 
@@ -12,10 +13,15 @@ class OperationsMenu(QFrame):
     Operations menu contains the operations that can be applied to the image.
     These operations are displayed as buttons.
     '''
+    side_bar: QWidget  # parent widget
     title: QLabel
+    # operations: list[OperationButton]
+
 
     def __init__(self, side_bar: QWidget):
         '''
+        Initialize the operations menu.
+
         '''
         super().__init__(side_bar)
         self.setStyleSheet('QFrame{background-color: #dbdbdb; border-radius: 6%; border: 2px solid '+f'{Settings.APP_COLOR.value}'+';}')

@@ -128,16 +128,18 @@ def absurd_filter(img) -> np.ndarray:
     return cv2.filter2D(img, -1, kernel)
 
 
-# def n_filter(img, kernel_size) -> np.ndarray:
-#     '''
-#     Apply a n filter to the image
-#     :param img: image to filter
-#     :param kernel_size: kernel size
-#     :return: filtered image
-#     '''
-#     kernel = np.ones((kernel_size, kernel_size), np.float32) / (kernel_size * kernel_size)  
-#     return cv2.filter2D(img, -1, kernel)
-
+def move_left(img) -> np.ndarray:
+    '''
+    Apply a absurd filter to the image. This filter is not a real filter, it is just for testing purposes
+    :param img: image to filter
+    :param kernel_size: kernel size
+    :return: filtered image
+    '''
+    kernel = np.array([[0, 0, 0], [0, 0, 1], [0, 0, 0]])  # move left
+    kernel = np.array([[0, 0, 0], [1, 0, 0], [0, 0, 0]])  # move right
+    kernel = np.array([[0, 0, 0], [0, 0, 0], [0, 1, 0]])  # move up
+    kernel = np.array([[0, 1, 0], [0, 0, 0], [0, 0, 0]])  # move down
+    return cv2.filter2D(img, -1, kernel)
 
 
 # ? MAIN ----------------------------------------------------------------------------------------------------------------------
@@ -162,6 +164,13 @@ if __name__ == '__main__':
     cv2.imshow('Edge', edge_filter(img, 3))
     cv2.imshow('Absurd', absurd_filter(img))
     # cv2.imshow('N', n_filter(img, 3))
+
+
+    # cv2.imshow('Move Left', move_left(img))
+    # iterate the move left filter
+    for i in range(100):
+        img = move_left(img)
+    cv2.imshow('Move Left', img)
 
 
     cv2.waitKey(0)

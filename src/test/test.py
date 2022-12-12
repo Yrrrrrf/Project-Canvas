@@ -3,9 +3,33 @@ import src.img_operations.histogram as histogram
 import src.img_operations.noise as noise
 import src.img_operations.pixel as pixel
 import cv2 as cv
+import unittest
 
 
 readImage = cv.imread('resources\\img\\lena.png')
+
+
+class TestHistogram(unittest.TestCase):
+    '''
+    Test the histogram module.
+    '''
+    # def test_hisogram(self):
+    #     self.test_equalize_img()
+    #     self.test_equalize_hist_rgb()
+    #     self.test_resize_img_scale()
+    #     self.test_resize_img()
+    
+    def test_equalize_img(self):
+        self.assertEqual(histogram.equalize_img(readImage), None)
+
+    def test_equalize_hist_rgb(self):
+        self.assertEqual(histogram.equalize_hist_rgb(readImage), None)
+
+    def test_resize_img_scale(self):
+        self.assertEqual(histogram.resize_img_scale(readImage, 100), None)
+
+    def test_resize_img(self):
+        self.assertEqual(histogram.resize_img(readImage, 100, 100), None)
 
 
 # todo: implement main thest function

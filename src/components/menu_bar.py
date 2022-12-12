@@ -58,7 +58,8 @@ class MenuBar(QMenuBar):
         file_menu.addSeparator()
         # Add Exit action
         exit_app = QAction('Exit', self)
-        exit_app.setShortcut('Ctrl+Q')  # xdn't
+        exit_app.setShortcut('Ctrl+W')  # xdn't
+        # exit_app.setShortcut('Ctrl+Q')  # xdn't
         exit_app.triggered.connect(QCoreApplication.instance().quit)
         file_menu.addAction(exit_app)
 
