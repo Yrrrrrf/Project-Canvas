@@ -64,6 +64,16 @@ class Operations(Enum):
         {'exponential noise' : exponential_noise}
     ]
 
+    BRUSH = [
+        {'set text': None},
+        {'draw': None},
+        {'blur': None},
+        {'something else...': None},
+        {'something else...': None},
+    ]
+
+
+
     CUBE = [
         {'cube_1': None},
         {'cube_2': None},
@@ -90,6 +100,13 @@ class Operations(Enum):
         {'nucleus_2': None},
         {'nucleus_3': None},
         {'nucleus_4': None},
+    ]
+
+    CELLS = [
+        {'cells_1': None},
+        {'cells_2': None},
+        {'cells_3': None},
+        {'cells_4': None},
     ]
 
 

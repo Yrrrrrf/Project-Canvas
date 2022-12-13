@@ -23,20 +23,6 @@ class Workspace(QFrame):
         '''
         super().__init__(display)
         self.setStyleSheet('background-color: #a19ea8; border-color: red; border-width: 5px;')
-        self.setCursor(QCursor(Qt.CursorShape.CrossCursor))
-
-        # self.stock_img = load_cat()  # return the memory address of the image
-        self.stock_img = 'resources\\img\\lena.png'
-        # self.visualizer = [Visualizer(self, self.stock_img)]
 
 
-    def paintEvent(self, event):
-        '''
-        Main paint event function that draws the elements inside the window.
-        '''
-        painter = QPainter(self)
-        painter.setPen(QPen(Qt.GlobalColor.darkCyan, 1, Qt.PenStyle.SolidLine))
-        painter.drawImage(0, 0, QImage(self.stock_img))
-        painter.drawRect(0, 0, 1280, 720)
-        painter.drawRect(16, 16, 1280, 720)
-
+        Visualizer(self)

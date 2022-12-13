@@ -59,9 +59,11 @@ class SideBar(QWidget):  # QWidget, but temporary is a QFrame just for testing
         self.buttons[5].clicked.connect(lambda: self.toggle(5))
         self.buttons[6].clicked.connect(lambda: self.toggle(6))
         self.buttons[7].clicked.connect(lambda: self.toggle(7))
+        self.buttons[8].clicked.connect(lambda: self.toggle(8))
+        self.buttons[9].clicked.connect(lambda: self.toggle(9))
         # ! why this doesn't work?!?!
         # for i in range(len(self.buttons)):
-            # self.buttons[i].clicked.connect(lambda: self.toggle(i))
+        #     self.buttons[i].clicked.connect(lambda: self.toggle(i))
 
         # ? set the operations_menu on the right side of the buttons_frame
         self.operations_menu.setGeometry(self.margin*2+SideBarButton.button_size, 0, self.margin*2, self.margin+self.buttons[-1].y()+SideBarButton.button_size)
@@ -81,13 +83,8 @@ class SideBar(QWidget):  # QWidget, but temporary is a QFrame just for testing
                 self.operations_menu.setCurrentIndex(page_index)
         else:  # if the operations menu is hidden
             self.operations_menu.setCurrentIndex(page_index)
-
-
-            # ! change hegith
-            print(len(self.buttons[page_index].operations))
-
-
             self.operations_menu.deploy()  # show the operations menu
+            # update the width of the side bar (to fit the operations menu)
             self.setFixedWidth(self.margin*2+SideBarButton.button_size+self.operations_menu.width())
 
 

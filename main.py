@@ -1,3 +1,5 @@
+from src.globals import Resources
+from src.components.loading_screen import LoadingScreen
 from src.components.display import Display
 from src.components.menu_bar import MenuBar
 from src.globals import Settings
@@ -19,15 +21,10 @@ class AppWindow(QMainWindow):
     def __init__(self):
         # Create the instance of the MainWindow
         super().__init__()
-        # Set the Main Window properties
-        self.setWindowTitle('Project Canvas')
-        self.setWindowIcon(QIcon('resources\\static\\brush.png'))
+        self.setWindowTitle('Canvas')
+        self.setWindowIcon(QIcon(Resources.ICONS.value+'brush.png'))
         self.setMinimumSize(Settings.WIDTH.value, Settings.HEIGHT.value)
-        # self.statusBar().showMessage(f'Project Canvas {Settings.SNAPSHOT.value}')
-        # self.setStyleSheet('background-color: #4d4d4d;')  # Set the window style sheet
-
-
-        self.setGeometry(0, 0, Settings.WIDTH.value, Settings.HEIGHT.value)  # Set the window geometry
+        self.statusBar().showMessage(f'Project Canvas {Settings.SNAPSHOT.value}')
         self.setWindowFlags(Qt.WindowType.WindowStaysOnTopHint)  # Set the window flags (remove the title bar
 
         # Set menu bar
@@ -39,10 +36,14 @@ class AppWindow(QMainWindow):
         self.setCentralWidget(self.display)  # Set the central widget of the window
 
         # Show the window
-        self.show()
+        # self.show()
 
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)  # Manage the GUI application's control flow and main settings.
+
     window = AppWindow()
-    sys.exit(app.exec())  # Start the event loop
+    window.show()
+
+    sys.exit(app.exec())
+

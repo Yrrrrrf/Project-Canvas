@@ -9,7 +9,7 @@ class Settings(Enum):
     HEIGHT = 720
     TOOLBAR_HEIGHT = 24
     APP_COLOR = 'DarkTurquoise'
-    SNAPSHOT = 'alpha v0.1'
+    SNAPSHOT = 'alpha v0.0.4'
 
 
 class Resources(Enum):

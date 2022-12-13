@@ -1,3 +1,4 @@
+from src.img_operations.load_image import load_cat, open_file
 from src.globals import Settings
 from src.components.workspace import Workspace
 from PyQt6.QtWidgets import QMenuBar, QMenu, QFileDialog
@@ -44,7 +45,7 @@ class MenuBar(QMenuBar):
         # Add the menu to the menu bar
         select_image = QAction('Select Image', self)
         select_image.setShortcut('Ctrl+O')
-        select_image.triggered.connect(self.open_file)
+        select_image.triggered.connect(lambda: open_file(self))
         file_menu.addAction(select_image)
         # Add Save Image action
         save_image = QAction('Save Image', self)
@@ -61,7 +62,7 @@ class MenuBar(QMenuBar):
         random_image = QAction('Random Image', self)
         random_image.setShortcut('Ctrl+R')
         # todo: complete this
-        # random_image.triggered.connect(lambda: Workspace.load)
+        random_image.triggered.connect(lambda: load_cat)
         file_menu.addAction(random_image)
         # Add Separator
         file_menu.addSeparator()
@@ -128,16 +129,3 @@ class MenuBar(QMenuBar):
         # Add the menu to the menu bar
         self.addMenu(help_menu)
         # help_menu.triggered.connect(print(Settings.))
-
-
-    # todo: format the output
-    def open_file(self):
-        '''
-        Open a file dialog to select an image.
-        '''
-        name = QFileDialog.getOpenFileName(self, 'Open File', '.\\resources\\img','Image Files ( *.bmp  *.gif *.jpg *.jpeg *.png *.pbm *.pgm *.ppm *.xbm *.xpm)')[0]
-        cv.imshow('Image', cv.imread(name))
-        print(f"\nImage selected: \033[32m{name.split('/')[-1]}\x1B[37m \
-                \n    Width: {cv.imread(name).shape[1]}\
-                \n    Height: {cv.imread(name).shape[0]}\
-                \n    Channels: {cv.imread(name).shape[2]}\n")
