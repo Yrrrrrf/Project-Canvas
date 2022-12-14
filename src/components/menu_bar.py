@@ -1,6 +1,6 @@
 from src.img_operations.load_image import load_cat, open_file
 from src.globals import Settings
-from src.components.workspace import Workspace
+from src.components.workspace import Workspace, Visualizer
 from PyQt6.QtWidgets import QMenuBar, QMenu, QFileDialog
 from PyQt6.QtGui import QAction, QFont
 from PyQt6.QtCore import QCoreApplication
@@ -42,8 +42,8 @@ class MenuBar(QMenuBar):
         file_menu = QMenu('File', self)
         # Add the menu to the menu bar
         select_image = QAction('Select Image', self)
-        select_image.setShortcut('Ctrl+O')
-        select_image.triggered.connect(lambda: open_file(self))
+        # select_image.setShortcut('Ctrl+O')
+        # select_image.triggered.connect(lambda: open_file(self))
         file_menu.addAction(select_image)
         # Add Save Image action
         save_image = QAction('Save Image', self)
@@ -60,7 +60,8 @@ class MenuBar(QMenuBar):
         random_image = QAction('Random Image', self)
         random_image.setShortcut('Ctrl+R')
         # todo: complete this
-        random_image.triggered.connect(lambda: load_cat)
+
+        # random_image.triggered.connect(lambda: Workspace.visualizer[0].set+
         file_menu.addAction(random_image)
         # Add Separator
         file_menu.addSeparator()

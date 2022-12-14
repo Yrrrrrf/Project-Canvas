@@ -15,7 +15,7 @@ class Workspace(QScrollArea):
     visualizer: list[Visualizer]
 
 
-    def __init__(self, display: QWidget):
+    def __init__(self, display: QWidget, visualizer: list[Visualizer] = []):
         '''
         Initialize the Workspace class.
         Needs the display widget as a parameter, which is the main window of the application.
@@ -27,13 +27,14 @@ class Workspace(QScrollArea):
         self.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
         self.setBackgroundRole(QPalette.ColorRole.Dark)
 
+
         # set test layout
         frame = QFrame(self)
         frame.setStyleSheet('background-color: #4A4A4A; border-color: blue;')
-        template = Visualizer(frame, scale=1, template='horizontal')
-        template.move(64, 64)
-
-        frame.setFixedSize(template.width()+128, template.height()+128)
+        self.visualizer = []
+        self.visualizer.append(Visualizer(frame, scale=1.0, template='square'))
+        self.visualizer[0].move(64, 64)
+        frame.setFixedSize(self.visualizer[0].width()+128, self.visualizer[0].height()+128)
         self.setWidget(frame)
 
         self.shortcut = QShortcut(QKeySequence("Ctrl+L"), self)

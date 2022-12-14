@@ -32,9 +32,13 @@ class Visualizer(QLabel):
 
 
     def set_template(self):
+        '''
+        Set the template of the visualizer.
+        The template is the layout of the image buffer's.
+        '''
         self.images = []
         # template = list(templates.keys())[n]  # get the n template (name: str)
         for coors in templates[self.template](self.width(), self.height(), self.margin):
-            self.images.append(ImageBuffer(self))
-            print(coors)
-            self.images[-1].setGeometry(coors[0], coors[1], coors[2], coors[3])
+            self.images.append(ImageBuffer(coors[2], coors[3], self))
+            self.images[-1].move(coors[0], coors[1])
+

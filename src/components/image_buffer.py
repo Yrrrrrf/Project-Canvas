@@ -14,69 +14,80 @@ class ImageBuffer(QLabel):
     '''
     image: str
     q_image: QImage
+    selected_image: QImage
     import_icon: str = Resources.ICONS.value+'import.png'
     delete_icon: str = Resources.ICONS.value+'delete.png'
     replace_icon: str=Resources.ICONS.value+'replace.png'
+    empty: bool = True  # The buffer is empty
 
 
-    def __init__(self, parent: QWidget, image: str = import_icon):
+
+
+    def __init__(self, width, height,  parent: QWidget, image: str = import_icon):
         '''
         Initialize the ImageBuffer class.
         Needs the image as a parameter.
         :param" image: The image that is displayed in the image buffer.
         '''
-        super().__init__(parent)        
-        # self.setScaledContents(True)
+        super().__init__(parent)       
+        self.setFixedSize(width, height)
         style = 'QLabel {background-color: lightgray; border-radius: 10%;}'
-        hover_style = "QLabel:hover{background-color : lightgray;}"
+        hover_style = "QLabel:hover{background-color : lightgray; border : 1px solid gray;}"
         self.setStyleSheet(style+hover_style)
-        # self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
 
-        if image == Resources.ICONS.value+'import.png':
-            self.default_import()
-        else:
-            self.import_image()
+        self.c_layout = QHBoxLayout()
+        self.setLayout(self.c_layout)
+        self.set_import_button()
+
+
+    def set_import_button(self) -> None:
+        '''
+        Import an image from the file system.
+        '''
+        self.image = self.import_icon  # set the image to the import icon
+        self.import_button = QPushButton(self)  # create the button
+        self.import_button.setIcon(QIcon(self.image))  # set the icon
+        self.import_button.setIconSize(QSize(64, 64))  # set the icon size
+        self.import_button.setFixedSize(72, 72)  # set the button size
+        self.import_button.setStyleSheet('QPushButton {background-color: white; border: 1px solid white; border-radius: 10%;} QPushButton:hover{background-color : lightgray;}')
+        self.import_button.clicked.connect(self.import_image)
+        # center the button
+        self.import_button.move((int)((self.width()-self.import_button.width())/2), (int)((self.height()-self.import_button.height())/2))
+
+
+    def import_image(self) -> None:
+        '''
+        Import an image from the file system.
+        Creates a file dialog to select the image.
+        If the image is not valid, it will show an error message.
+        '''
+        try:
+            self.set_image(open_file(self))
+        except:
+            QMessageBox.critical(self, 'Error', 'Please select a file.')
+            self.update()
 
 
     def set_image(self, image: str) -> None:
         '''
         Set the image of the image buffer.
         '''
+        print(image)
         self.image = image
         self.q_image = QImage(self.image)
-        # self.image_reader.read(self.q_image)
         self.setPixmap(QPixmap.fromImage(self.q_image))
-        # self.setFixedSize(self.q_image.width(), self.q_image.height())
+        # self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
+        self.empty = False  # the buffer is not empty anymore
+        self.selected_image = self.q_image  # ? Set the selected image to the image buffer image
+        self.set_edit_buttons()
 
 
-    def default_import(self) -> None:
+    def set_edit_buttons(self) -> None:
         '''
-        Import an image from the file system.
+        Set the edit buttons.
         '''
-        self.image = Resources.ICONS.value+'import.png'
-        self.import_button = QPushButton(self)
-        self.import_button.setIcon(QIcon(self.image))
-        self.import_button.setIconSize(QSize(64, 64))
-        self.import_button.setFixedSize(72, 72)
-        self.import_button.setStyleSheet('QPushButton {background-color: white; border: 1px solid white; border-radius: 10%;} QPushButton:hover{background-color : lightgray;}')
-        # set on click event
-        self.import_button.clicked.connect(self.import_image)
-        # center the button
-        layout = QHBoxLayout()
-        self.setLayout(layout)
-        layout.addWidget(self.import_button)
+        self.import_button.hide()
 
 
-    def import_image(self) -> None:
-        '''
-        Import an image from the file system.
-        '''
-        try:
-            self.set_image(open_file(self))
-            # center image by default
-            self.import_button.deleteLater()
-        except:
-            QMessageBox.critical(self, 'Error', 'Please select a file.')
-            self.default_import()
-            self.update()
+
 
