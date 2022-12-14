@@ -19,6 +19,24 @@ def rotate(img, angle, center=None, scale=1.0) -> np.ndarray:
     return cv2.warpAffine(img, M, (w, h))
 
 
+def rgb_to_gray(img) -> np.ndarray:
+    '''
+    Convert the image to grayscale
+    :param img: image to convert
+    :return: grayscale image
+    '''
+    return cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+
+def gray_to_rgb(img) -> np.ndarray:
+    '''
+    Convert the image to RGB
+    :param img: image to convert
+    :return: RGB image
+    '''
+    return cv2.cvtColor(img, cv2.COLOR_GRAY2RGB)
+
+
 def vertical_flip(img) -> np.ndarray:
     '''
     Flip the image vertically
@@ -169,8 +187,6 @@ def piecewise_linear_transform(img, r1, s1, r2, s2) -> np.ndarray:
     return out
 
 
-
-
 if __name__ == '__main__':
     # * Load image
     path = 'resources\\img\\lena.png'
@@ -178,18 +194,19 @@ if __name__ == '__main__':
 
     # * Test functions
     cv2.imshow('Original', img)
-    cv2.imshow('Vertical flip', vertical_flip(img))
-    cv2.imshow('Horizontal flip', horizontal_flip(img))
-    cv2.imshow('Invert', invert(img))
-    cv2.imshow('Clear zone', clear_zone(img, 100, 100, 100, 100))
-    cv2.imshow('Brightness', change_brightness(img, 50))
-    cv2.imshow('Contrast', change_contrast(img, 50))
-    # cv2.imshow('Logarithmic transform', logarithmic_transform(img))
-    # cv2.imshow('Power transformation', power_transformation(img))
-    # cv2.imshow('Exponential transform', exponential_transform(img))
-    cv2.imshow('Gamma correction', gamma_correction(img))
-    cv2.imshow('Power law transform', power_law_transform(img))
-    # cv2.imshow('Piecewise linear transform', piecewise_linear_transform(img, 50, 0, 200, 255))
+    cv2.imshow('rgb2gray', rgb_to_gray(img))
+    # cv2.imshow('Vertical flip', vertical_flip(img))
+    # cv2.imshow('Horizontal flip', horizontal_flip(img))
+    # cv2.imshow('Invert', invert(img))
+    # cv2.imshow('Clear zone', clear_zone(img, 100, 100, 100, 100))
+    # cv2.imshow('Brightness', change_brightness(img, 50))
+    # cv2.imshow('Contrast', change_contrast(img, 50))
+    # # cv2.imshow('Logarithmic transform', logarithmic_transform(img))
+    # # cv2.imshow('Power transformation', power_transformation(img))
+    # # cv2.imshow('Exponential transform', exponential_transform(img))
+    # cv2.imshow('Gamma correction', gamma_correction(img))
+    # cv2.imshow('Power law transform', power_law_transform(img))
+    # # cv2.imshow('Piecewise linear transform', piecewise_linear_transform(img, 50, 0, 200, 255))
 
 
     cv2.waitKey(0)

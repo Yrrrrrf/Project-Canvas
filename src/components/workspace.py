@@ -2,7 +2,7 @@ from src.components.visualizer import Visualizer
 from src.components.templates import Template
 from src.img_operations.load_image import load_cat
 from PyQt6.QtWidgets import QWidget, QFrame, QLabel, QVBoxLayout, QHBoxLayout, QScrollArea
-from PyQt6.QtCore import Qt
+from PyQt6.QtCore import Qt, QRect, QSize
 from PyQt6.QtGui import QPen, QPainter, QImage, QCursor, QKeySequence, QShortcut, QPalette
 from dataclasses import dataclass
 
@@ -31,8 +31,10 @@ class Workspace(QScrollArea):
         # set test layout
         frame = QFrame(self)
         frame.setStyleSheet('background-color: #4A4A4A; border-color: blue;')
-        template = Template(frame, 2.0, 64) 
+        template = Template(frame, 2)
+        # template.setMinimumSize(QSize(3000, 400))
         template.move(64, 64)
+
 
         frame.setFixedSize(template.width()+128, template.height()+128)
         self.setWidget(frame)

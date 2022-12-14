@@ -38,10 +38,5 @@ def load_cat() -> str:
     with open (filename, 'wb') as file:
         file.write(request.content)
         img = cv.imread(filename)
-        # print('new cat image loaded successfully!')
-        # cv.imshow('cat', img)
-        # cv.waitKey(200)
         return filename
-
-
 

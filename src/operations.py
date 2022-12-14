@@ -17,6 +17,7 @@ class Operations(Enum):
     '''
     PIXEL = [ 
         {'verital flip' : vertical_flip},
+        {'rgb to gray' : rgb_to_gray},
         {'horizontal flip' : horizontal_flip},
         {'invert colors' : invert},
         {'clear zone' : clear_zone},

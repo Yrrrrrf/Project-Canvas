@@ -21,6 +21,7 @@ class Template(Visualizer):
         super().__init__(workspace)
         self.setStyleSheet('background-color: white')
         self.setCursor(QCursor(Qt.CursorShape.CrossCursor))
+        print(self.width(), self.height())
         self.setFixedSize((int)(self.width()*scale), (int)(self.height()*scale))
 
 
@@ -44,31 +45,18 @@ class Template(Visualizer):
         This function is used to test the template class.
         '''
         # set test layout
-        layout = QVBoxLayout()
-        layout.setContentsMargins
-        layout.setContentsMargins(self.margin, self.margin, self.margin, self.margin)
-        self.setLayout(layout)
-
 
         self.imgs = []
         self.imgs.append(ImageBuffer())
-        # self.imgs.append(ImageBuffer(QImage('resources\\img\\waves.jpg')))
         self.imgs[0].setParent(self)
-        self.imgs[0].move(self.margin*2, self.margin*2)
-
-        # self.imgs.append(ImageBuffer(QImage('resources\\img\\lena.png')))
-        # self.imgs[1].setParent(self)
-        # self.imgs[1].move(self.margin*2, self.margin*2)
-
-        # self.imgs.append(ImageBuffer(QImage('resources\\img\\lena.png')))
-        # self.imgs[2].setParent(self)
-        # self.imgs[2].move(self.margin*2, self.margin*2)
-
+        self.imgs[0].setGeometry(0, 0, 400, 100)
+        self.imgs.append(ImageBuffer())
+        self.imgs[1].setParent(self)
+        self.imgs[1].setGeometry(100, 100,100, 100)
+        self.imgs.append(ImageBuffer())
+        self.imgs[2].setParent(self)
+        self.imgs[2].setGeometry(300, 300, 100, 100)
         # add image buffers
-        # layout.addWidget(self.imgs[0])
-        # layout.addWidget(self.imgs[1])
-        # layout.addWidget(self.imgs[2])
-
 
         
         
