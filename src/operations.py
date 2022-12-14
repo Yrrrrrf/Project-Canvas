@@ -16,6 +16,7 @@ class Operations(Enum):
     ImpOps global variables of the application.
     '''
     PIXEL = [ 
+        # {'test': test},
         {'verital flip' : vertical_flip},
         {'rgb to gray' : rgb_to_gray},
         {'horizontal flip' : horizontal_flip},
@@ -65,29 +66,29 @@ class Operations(Enum):
         {'exponential noise' : exponential_noise}
     ]
 
-    BRUSH = [
-        {'set text': None},
-        {'draw': None},
-        {'blur': None},
-        {'something else...': None},
-        {'something else...': None},
-    ]
+    # BRUSH = [
+    #     {'set text': None},
+    #     {'draw': None},
+    #     {'blur': None},
+    #     {'something else...': None},
+    #     {'something else...': None},
+    # ]
 
 
 
-    CUBE = [
-        {'cube_1': None},
-        {'cube_2': None},
-        {'cube_3': None},
-        {'cube_4': None},
-    ]
+    # CUBE = [
+    #     {'cube_1': None},
+    #     {'cube_2': None},
+    #     {'cube_3': None},
+    #     {'cube_4': None},
+    # ]
 
-    GRAPH = [
-        {'grapth_1': None},
-        {'grapth_2': None},
-        {'grapth_3': None},
-        {'grapth_4': None},
-    ]
+    # GRAPH = [
+    #     {'grapth_1': None},
+    #     {'grapth_2': None},
+    #     {'grapth_3': None},
+    #     {'grapth_4': None},
+    # ]
 
     # LOG = [
     #     {'log_1': None},

@@ -12,18 +12,17 @@ class ImageBuffer(QLabel):
     '''
     Image buffer class reference to the image buffer of the application.
     '''
-    image: str
+    image_path: str
     q_image: QImage
     selected_image: QImage
     import_icon: str = Resources.ICONS.value+'import.png'
     delete_icon: str = Resources.ICONS.value+'delete.png'
     replace_icon: str=Resources.ICONS.value+'replace.png'
     empty: bool = True  # The buffer is empty
+    selected: bool = False  # The buffer is selected
 
 
-
-
-    def __init__(self, width, height,  parent: QWidget, image: str = import_icon):
+    def __init__(self, width, height,  parent: QWidget, image_path: str = import_icon):
         '''
         Initialize the ImageBuffer class.
         Needs the image as a parameter.
@@ -35,6 +34,7 @@ class ImageBuffer(QLabel):
         hover_style = "QLabel:hover{background-color : lightgray; border : 1px solid gray;}"
         self.setStyleSheet(style+hover_style)
 
+        # center the import button
         self.c_layout = QHBoxLayout()
         self.setLayout(self.c_layout)
         self.set_import_button()
@@ -44,9 +44,8 @@ class ImageBuffer(QLabel):
         '''
         Import an image from the file system.
         '''
-        self.image = self.import_icon  # set the image to the import icon
         self.import_button = QPushButton(self)  # create the button
-        self.import_button.setIcon(QIcon(self.image))  # set the icon
+        self.import_button.setIcon(QIcon(self.import_icon))  # set the icon
         self.import_button.setIconSize(QSize(64, 64))  # set the icon size
         self.import_button.setFixedSize(72, 72)  # set the button size
         self.import_button.setStyleSheet('QPushButton {background-color: white; border: 1px solid white; border-radius: 10%;} QPushButton:hover{background-color : lightgray;}')
@@ -62,7 +61,10 @@ class ImageBuffer(QLabel):
         If the image is not valid, it will show an error message.
         '''
         try:
-            self.set_image(open_file(self))
+            self.image_path = open_file(self)
+            global active_buffer
+            active_buffer = self
+            self.set_image(self.image_path)
         except:
             QMessageBox.critical(self, 'Error', 'Please select a file.')
             self.update()
@@ -72,13 +74,13 @@ class ImageBuffer(QLabel):
         '''
         Set the image of the image buffer.
         '''
-        print(image)
-        self.image = image
-        self.q_image = QImage(self.image)
+        # print(image)
+        self.image_path = image
+        self.q_image = QImage(self.image_path)
         self.setPixmap(QPixmap.fromImage(self.q_image))
         # self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
         self.empty = False  # the buffer is not empty anymore
-        self.selected_image = self.q_image  # ? Set the selected image to the image buffer image
+        # self.selected_image = self.q_image  # ? Set the selected image to the image buffer image
         self.set_edit_buttons()
 
 

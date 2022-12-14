@@ -2,6 +2,11 @@ import numpy as np
 import cv2
 
 
+
+def test() -> str:
+    return 'test'
+
+
 def rotate(img, angle, center=None, scale=1.0) -> np.ndarray:
     '''
     Rotate the image
@@ -43,7 +48,9 @@ def vertical_flip(img) -> np.ndarray:
     :param img: image to flip
     :return: flipped image
     '''
-    return cv2.flip(img, 0)  # 0 = vertical
+    print('vertical flip')
+    return cv2.imshow('image', cv2.flip(img, 0))
+    # return cv2.flip(img, 0)  # 0 = vertical
 
 
 def horizontal_flip(img) -> np.ndarray:

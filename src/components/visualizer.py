@@ -18,6 +18,7 @@ class Visualizer(QLabel):
     margin: int = 16
     scale: float = 1.0
     template: str = 'square'
+    selected: bool = False
 
 
     def __init__(self, workspace: QFrame, width: int = 512, height: int = 512, scale: float = 1.0, margin: int = 16, template: str = 'square'):

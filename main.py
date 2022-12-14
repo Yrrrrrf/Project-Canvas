@@ -41,8 +41,12 @@ class AppWindow(QMainWindow):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)  # Manage the GUI application's control flow and main settings.
-
     window = AppWindow()
+    
+    
+    current_img_path = ""
+    
+
     window.show()
     sys.exit(app.exec())
 
