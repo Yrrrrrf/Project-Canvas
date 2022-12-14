@@ -1,6 +1,6 @@
 from src.globals import Settings, Resources
 from src.img_operations.load_image import open_file
-from PyQt6.QtWidgets import QLabel, QPushButton, QDialog, QFileDialog, QMessageBox, QHBoxLayout
+from PyQt6.QtWidgets import QLabel, QPushButton, QDialog, QFileDialog, QMessageBox, QHBoxLayout, QWidget
 from PyQt6.QtGui import QIcon, QImage, QPixmap, QImageReader, QKeySequence, QShortcut
 from PyQt6.QtCore import Qt, QSize
 import sys
@@ -14,16 +14,18 @@ class ImageBuffer(QLabel):
     '''
     image: str
     q_image: QImage
-    image_reader: QImageReader = QImageReader()
+    import_icon: str = Resources.ICONS.value+'import.png'
+    delete_icon: str = Resources.ICONS.value+'delete.png'
+    replace_icon: str=Resources.ICONS.value+'replace.png'
 
 
-    def __init__(self, image: str= Resources.ICONS.value+'import.png'):
+    def __init__(self, parent: QWidget, image: str = import_icon):
         '''
         Initialize the ImageBuffer class.
         Needs the image as a parameter.
         :param" image: The image that is displayed in the image buffer.
         '''
-        super().__init__()        
+        super().__init__(parent)        
         # self.setScaledContents(True)
         style = 'QLabel {background-color: lightgray; border-radius: 10%;}'
         hover_style = "QLabel:hover{background-color : lightgray;}"
@@ -36,14 +38,13 @@ class ImageBuffer(QLabel):
             self.import_image()
 
 
-
     def set_image(self, image: str) -> None:
         '''
         Set the image of the image buffer.
         '''
         self.image = image
         self.q_image = QImage(self.image)
-        self.image_reader.read(self.q_image)
+        # self.image_reader.read(self.q_image)
         self.setPixmap(QPixmap.fromImage(self.q_image))
         # self.setFixedSize(self.q_image.width(), self.q_image.height())
 
