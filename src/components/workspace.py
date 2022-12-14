@@ -31,7 +31,7 @@ class Workspace(QScrollArea):
         # set test layout
         frame = QFrame(self)
         frame.setStyleSheet('background-color: #4A4A4A; border-color: blue;')
-        template = Template(frame, 2)
+        template = Template(frame, 1)
         # template.setMinimumSize(QSize(3000, 400))
         template.move(64, 64)
 

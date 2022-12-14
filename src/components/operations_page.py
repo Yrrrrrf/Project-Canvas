@@ -25,6 +25,7 @@ class OperationsPage(QFrame):
         The page contains a OperationButton for each operation.
         '''
         super().__init__(operations_menu)
+        self.operations_menu = operations_menu
         self.operations = operations
         self.setStyleSheet('QFrame {background-color: #dbdbdb; border-radius: 6%; border: 2px solid '+f'{Settings.APP_COLOR.value}'+';}')
         self.title = QLabel(self)
@@ -55,4 +56,6 @@ class OperationsPage(QFrame):
         for i in range(len(self.operations)):
             OperationButton(self, self.operations[i]) \
             .setGeometry(SideBar.margin*2, self.title.height()+SideBar.margin*4+(i*(SideBar.margin+ops_button_size)), self.showing_size-SideBar.margin*4, ops_button_size)
+        self.setFixedHeight(self.title.height()+((1+len(self.operations))*(SideBar.margin+ops_button_size)))
 
+    

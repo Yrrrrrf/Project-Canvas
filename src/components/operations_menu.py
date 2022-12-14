@@ -23,6 +23,7 @@ class OperationsMenu(QStackedWidget):
         Initialize the operations menu.
         '''
         super().__init__(side_bar)
+        # self.setFixedHeight(700)
         self.hide()  # ? Hide the operations menu by default
 
 

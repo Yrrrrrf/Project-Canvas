@@ -25,7 +25,7 @@ class ImageBuffer(QLabel):
         '''
         super().__init__()        
         # self.setScaledContents(True)
-        style = 'QLabel {background-color: white; border-radius: 10%;}'
+        style = 'QLabel {background-color: lightgray; border-radius: 10%;}'
         hover_style = "QLabel:hover{background-color : lightgray;}"
         self.setStyleSheet(style+hover_style)
         # self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
@@ -57,13 +57,10 @@ class ImageBuffer(QLabel):
         self.import_button.setIcon(QIcon(self.image))
         self.import_button.setIconSize(QSize(64, 64))
         self.import_button.setFixedSize(72, 72)
-        self.import_button.setStyleSheet('QPushButton {background-color: white; border: 1px solid white; border-radius: 10%;}')
-        self.import_button.setStyleSheet(self.import_button.styleSheet()+"QPushButton:hover{background-color : lightgray;}")
+        self.import_button.setStyleSheet('QPushButton {background-color: white; border: 1px solid white; border-radius: 10%;} QPushButton:hover{background-color : lightgray;}')
         # set on click event
         self.import_button.clicked.connect(self.import_image)
         # center the button
-        ## add button to layout
-        self.import_button.setParent(self)
         layout = QHBoxLayout()
         self.setLayout(layout)
         layout.addWidget(self.import_button)
@@ -81,3 +78,4 @@ class ImageBuffer(QLabel):
             QMessageBox.critical(self, 'Error', 'Please select a file.')
             self.default_import()
             self.update()
+

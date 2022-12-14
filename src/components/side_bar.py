@@ -78,13 +78,14 @@ class SideBar(QWidget):  # QWidget, but temporary is a QFrame just for testing
         if self.operations_menu.deployed == True:  # if the operations menu is deployed
             if self.operations_menu.currentIndex() == page_index:
                 self.operations_menu.hide()  # hide the operations menu
-                # self.operations_menu.setFixedHeight(self.margin+self.buttons[-1].y()+SideBarButton.button_size)
                 self.setFixedWidth(self.margin*4+SideBarButton.button_size)
             else:  # if the operations menu is deployed, but the user clicked on a different button
                 self.operations_menu.setCurrentIndex(page_index)
+                self.operations_menu.setFixedHeight(len(self.buttons[page_index].operations)*(SideBarButton.button_size+self.margin))
         else:  # if the operations menu is hidden
             self.operations_menu.setCurrentIndex(page_index)
             self.operations_menu.deploy()  # show the operations menu
+            self.operations_menu.setFixedHeight(len(self.buttons[page_index].operations)*(SideBarButton.button_size+self.margin))
             # update the width of the side bar (to fit the operations menu)
             self.setFixedWidth(self.margin*2+SideBarButton.button_size+self.operations_menu.width())
 
