@@ -15,7 +15,6 @@ class SideBarButton(QPushButton):
     name: str  # ? name corresponds to the Operation type (Enum)
     operations: list[dict]  # ? list of operations
     button_size: int = 48
-    icon_size: int = 40
 
 
     def __init__(self, name: str, operations: list[dict], side_bar: QWidget):
@@ -29,6 +28,6 @@ class SideBarButton(QPushButton):
         self.setStyleSheet(button_style + hover_style)
         # If there's only one file with that posible name*, then the path will be autocompleted to the file.
         self.setIcon(QIcon(Resources.ICONS.value+self.name+'.png'))  # Just to be sure that is the format of the icon
-        self.setIconSize(QSize(self.icon_size, self.icon_size))
+        self.setIconSize(QSize((int)(self.button_size*0.8), (int)(self.button_size*0.8)))
         self.setFixedSize(self.button_size, self.button_size)  # default size
 

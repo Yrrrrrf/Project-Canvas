@@ -4,7 +4,7 @@ from src.components.display import Display
 from src.components.menu_bar import MenuBar
 from src.globals import Settings
 from PyQt6.QtWidgets import QApplication, QMainWindow
-from PyQt6.QtGui import QIcon
+from PyQt6.QtGui import QIcon, QKeySequence, QShortcut
 from PyQt6.QtCore import Qt
 import sys
 from dataclasses import dataclass
@@ -18,6 +18,7 @@ class AppWindow(QMainWindow):
     menu_bar: MenuBar
     display: Display
 
+
     def __init__(self):
         # Create the instance of the MainWindow
         super().__init__()
@@ -25,7 +26,8 @@ class AppWindow(QMainWindow):
         self.setWindowIcon(QIcon(Resources.ICONS.value+'brush.png'))
         self.setMinimumSize(Settings.WIDTH.value, Settings.HEIGHT.value)
         self.statusBar().showMessage(f'Project Canvas {Settings.SNAPSHOT.value}')
-        self.setWindowFlags(Qt.WindowType.WindowStaysOnTopHint)  # Set the window flags (remove the title bar
+        # self.setWindowFlags(Qt.WindowType.WindowStaysOnTopHint)  # Set the window flags (remove the title bar
+        # self.setStyleSheet('background-color: cyan;')
 
         # Set menu bar
         self.menu_bar = MenuBar()
@@ -35,8 +37,6 @@ class AppWindow(QMainWindow):
         self.display = Display()
         self.setCentralWidget(self.display)  # Set the central widget of the window
 
-        # Show the window
-        # self.show()
 
 
 if __name__ == '__main__':
@@ -44,6 +44,5 @@ if __name__ == '__main__':
 
     window = AppWindow()
     window.show()
-
     sys.exit(app.exec())
 

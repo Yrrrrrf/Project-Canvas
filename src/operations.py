@@ -88,26 +88,26 @@ class Operations(Enum):
         {'grapth_4': None},
     ]
 
-    LOG = [
-        {'log_1': None},
-        {'log_2': None},
-        {'log_3': None},
-        {'log_4': None},
-    ]
+    # LOG = [
+    #     {'log_1': None},
+    #     {'log_2': None},
+    #     {'log_3': None},
+    #     {'log_4': None},
+    # ]
 
-    NUCLEUS = [
-        {'nucleus_1': None},
-        {'nucleus_2': None},
-        {'nucleus_3': None},
-        {'nucleus_4': None},
-    ]
+    # NUCLEUS = [
+    #     {'nucleus_1': None},
+    #     {'nucleus_2': None},
+    #     {'nucleus_3': None},
+    #     {'nucleus_4': None},
+    # ]
 
-    CELLS = [
-        {'cells_1': None},
-        {'cells_2': None},
-        {'cells_3': None},
-        {'cells_4': None},
-    ]
+    # CELLS = [
+    #     {'cells_1': None},
+    #     {'cells_2': None},
+    #     {'cells_3': None},
+    #     {'cells_4': None},
+    # ]
 
 
 if __name__ == '__main__':

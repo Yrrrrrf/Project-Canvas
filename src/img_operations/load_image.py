@@ -4,17 +4,18 @@ import requests
 from dataclasses import dataclass
 
 
-def open_file(self):
+def open_file(self) -> str:
     '''
     Open a file dialog to select an image.
+    :return: the path of the selected image
     '''
     from PyQt6.QtWidgets import QFileDialog
     name = QFileDialog.getOpenFileName(self, 'Open File', '.\\resources\\img','Image Files ( *.bmp  *.gif *.jpg *.jpeg *.png *.pbm *.pgm *.ppm *.xbm *.xpm)')[0]
-    cv.imshow('Image', cv.imread(name))
     print(f"\nImage selected: \033[32m{name.split('/')[-1]}\x1B[37m \
-            \n    Width: {cv.imread(name).shape[1]}\
-            \n    Height: {cv.imread(name).shape[0]}\
-            \n    Channels: {cv.imread(name).shape[2]}\n")
+            \n   Width: {cv.imread(name).shape[1]:-4} px\
+            \n  Height: {cv.imread(name).shape[0]:-4} px\
+            \nChannels: {cv.imread(name).shape[2]:-4}\n")
+    return name
 
 
 def load_image(path: str) -> np.ndarray:

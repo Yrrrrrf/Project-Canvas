@@ -29,8 +29,8 @@ class SideBar(QWidget):  # QWidget, but temporary is a QFrame just for testing
         # ? load the buttons
         self.load_side_bar_buttons()
 
+        # self.center_side_bar()
         # example
-        # OperationButton(self.operations_menu, {'a': lambda: print('a')}).setGeometry(32, 48, 2000, 32)
         # OperationButton(self.operations_menu, {'a': lambda: print('a')}).setGeometry(32, 88, 2000, 32)
 
 
@@ -50,6 +50,7 @@ class SideBar(QWidget):  # QWidget, but temporary is a QFrame just for testing
             self.operations_menu.addWidget(OperationsPage(self.operations_menu, op_button.name, operation.value))
             i+=1
 
+
         # ? Connect the buttons to the toggle function
         self.buttons[0].clicked.connect(lambda: self.toggle(0))
         self.buttons[1].clicked.connect(lambda: self.toggle(1))
@@ -58,10 +59,10 @@ class SideBar(QWidget):  # QWidget, but temporary is a QFrame just for testing
         self.buttons[4].clicked.connect(lambda: self.toggle(4))
         self.buttons[5].clicked.connect(lambda: self.toggle(5))
         self.buttons[6].clicked.connect(lambda: self.toggle(6))
-        self.buttons[7].clicked.connect(lambda: self.toggle(7))
-        self.buttons[8].clicked.connect(lambda: self.toggle(8))
-        self.buttons[9].clicked.connect(lambda: self.toggle(9))
-        # ! why this doesn't work?!?!
+        # self.buttons[7].clicked.connect(lambda: self.toggle(7))
+        # self.buttons[8].clicked.connect(lambda: self.toggle(8))
+        # self.buttons[9].clicked.connect(lambda: self.toggle(9))
+        # ! why this doesn't work?!?!?!
         # for i in range(len(self.buttons)):
         #     self.buttons[i].clicked.connect(lambda: self.toggle(i))
 
@@ -77,7 +78,7 @@ class SideBar(QWidget):  # QWidget, but temporary is a QFrame just for testing
         if self.operations_menu.deployed == True:  # if the operations menu is deployed
             if self.operations_menu.currentIndex() == page_index:
                 self.operations_menu.hide()  # hide the operations menu
-                self.operations_menu.setFixedHeight(self.margin+self.buttons[-1].y()+SideBarButton.button_size)
+                # self.operations_menu.setFixedHeight(self.margin+self.buttons[-1].y()+SideBarButton.button_size)
                 self.setFixedWidth(self.margin*4+SideBarButton.button_size)
             else:  # if the operations menu is deployed, but the user clicked on a different button
                 self.operations_menu.setCurrentIndex(page_index)

@@ -1,8 +1,7 @@
 from src.components.side_bar_button import SideBarButton
 from src.components.workspace import Workspace
 from src.components.side_bar import SideBar
-from PyQt6.QtWidgets import QApplication, QWidget, QApplication, QHBoxLayout
-import sys
+from PyQt6.QtWidgets import QWidget, QHBoxLayout
 from dataclasses import dataclass
 
 
@@ -22,6 +21,7 @@ class Display(QWidget):
         # The layout had the same name as the class because is the main layout of the application. So all the widgets will be added to this layout, and the'll be resized automatically.
         display = QHBoxLayout()
         self.setLayout(display)
+
         self.workspace = Workspace(self)
         self.sidebar = SideBar(self)
         # Set the initial side bar size (hidden)

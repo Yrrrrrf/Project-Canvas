@@ -37,7 +37,7 @@ class LoadingScreen(QWidget):
         self.timer = QTimer()
         self.progress = 0
         self.timer.timeout.connect(loading)
-        self.timer.start(20)
+        self.timer.start(100)
 
 
     def set_image(self, path: str, x: int, y: int) -> None:
@@ -102,3 +102,12 @@ def loading():
         # LoadingScreen.close()
 
 
+
+# now test it
+if __name__ == '__main__':
+    import sys
+    from PyQt6.QtWidgets import QApplication
+    app = QApplication(sys.argv)
+    window = LoadingScreen()
+    window.show()
+    sys.exit(app.exec())

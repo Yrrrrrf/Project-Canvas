@@ -19,9 +19,7 @@ class MenuBar(QMenuBar):
         # Set the menu bar style sheet
         self.setFont(QFont('Segoe Print', 10, QFont.Weight.Bold))
         menu_bar_style ='QMenuBar{background-color: #2d2d2d; color: white;} QMenuBar::item::selected{background-color: '+f'{Settings.APP_COLOR.value}'+';}'
-
         menu_style = 'QMenu{background-color: #2d2d2d; color: white; border: 1px solid '+f'{Settings.APP_COLOR.value}'+'; margin: 1px;} QMenu::item::selected{background-color: '+f'{Settings.APP_COLOR.value}'+';}'
-        # self.setStyleSheet(menu_style)
         self.setStyleSheet(menu_bar_style+menu_style)
         self.set_menu_bar()
 
