@@ -1,5 +1,4 @@
 from src.globals import Settings
-from src.components.operation_button import OperationButton
 from PyQt6.QtWidgets import QWidget, QFrame, QLabel, QStackedWidget, QPushButton
 from PyQt6.QtGui import QPen, QPainter, QFont
 from PyQt6.QtCore import Qt

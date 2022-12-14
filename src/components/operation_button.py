@@ -46,7 +46,6 @@ class OperationButton(QPushButton):
         self.clicked.connect(self.execute_operation)
 
 
-
     def execute_operation(self) -> None:
         '''
         Execute the operation of the button.
@@ -69,9 +68,12 @@ class OperationButton(QPushButton):
             active_buffer.q_image = QImage(cv_image.data, width, height, bytesPerLine, QImage.Format.Format_RGB888)
             active_buffer.setPixmap(QPixmap.fromImage(active_buffer.q_image))
             # save the image
-            img = cv.imwrite('file.png', cv_image)
-
-            cv.imshow('image', img)
+            active_buffer.image_path = 'resources\\img\\temp\\edit.png'  # update image path
+            # img = cv.imwrite('resources\\img\\temp\\edit.png', cv_image., format=)  # save it in the temp directory 
+            # save it in bgr format
+            cv_image = cv.cvtColor(cv_image, cv.COLOR_RGB2BGR)
+            cv.imwrite('resources\\img\\temp\\edit.png', cv_image)
+            # cv.imshow('image', img)
 
             active_buffer.update()
         except ImportError:

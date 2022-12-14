@@ -1,5 +1,5 @@
 from src.globals import Settings
-from src.components.operation_button import OperationButton
+
 from PyQt6.QtWidgets import QFrame, QLabel, QStackedWidget
 from PyQt6.QtGui import QFont
 from PyQt6.QtCore import Qt
@@ -50,6 +50,7 @@ class OperationsPage(QFrame):
         '''
         Set the operations of the operations menu.
         '''
+        from src.components.operation_button import OperationButton
         from src.components.side_bar import SideBar, SideBarButton
         ops_button_size = (int)(SideBarButton.button_size/2)
 

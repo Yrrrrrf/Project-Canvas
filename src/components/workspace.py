@@ -81,7 +81,7 @@ class Workspace(QScrollArea):
 
         self.spinBox.show()
 
-    
+
     def set_template(self):
         '''
         Set the template of the visualizer.
@@ -90,11 +90,13 @@ class Workspace(QScrollArea):
         self.spinBox.hide()
         self.confirm.hide()
         print(self.template)
+
         # self.visualizer.append(Visualizer(self.frame, scale=1.0, template='t'))
         # set it by index
         # print(templates[list(templates.keys())[0]], '')
         self.visualizer.append(Visualizer(self.frame, scale=1.0, margin=16, template='cross'))
         # self.visualizer.append(Visualizer(self.frame, scale=1.0, template=templates[list(templates.keys())[self.template]]))
+
         self.visualizer[0].move(64, 64)
         self.frame.setFixedSize(self.visualizer[0].width()+128, self.visualizer[0].height()+128)
         self.setWidget(self.frame)

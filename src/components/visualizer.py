@@ -35,8 +35,6 @@ class Visualizer(QLabel):
         for coors in templates[template](self.width(), self.height(), self.margin):
             self.images.append(ImageBuffer(coors[2], coors[3], self))
             self.images[-1].move(coors[0], coors[1])
-
-
         # self.set_template()
 
 

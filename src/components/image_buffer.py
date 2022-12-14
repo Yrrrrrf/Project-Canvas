@@ -79,6 +79,12 @@ class ImageBuffer(QLabel):
         print(self.image_path)
         self.q_image = QImage(self.image_path)
         self.setPixmap(QPixmap.fromImage(self.q_image))
+
+
+        # draw a border around the image
+        self.setStyleSheet('QLabel {border: 1px solid gray; border-radius: 10%;}')
+
+
         # self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
         self.empty = False  # the buffer is not empty anymore
         # self.selected_image = self.q_image  # ? Set the selected image to the image buffer image
