@@ -48,8 +48,8 @@ def vertical_flip(img) -> np.ndarray:
     :param img: image to flip
     :return: flipped image
     '''
-    print('vertical flip')
-    return cv2.imshow('image', cv2.flip(img, 0))
+    
+    return cv2.flip(img, 0)
     # return cv2.flip(img, 0)  # 0 = vertical
 
 
@@ -201,8 +201,9 @@ if __name__ == '__main__':
 
     # * Test functions
     cv2.imshow('Original', img)
-    cv2.imshow('rgb2gray', rgb_to_gray(img))
-    # cv2.imshow('Vertical flip', vertical_flip(img))
+    # cv2.imshow('rgb2gray', rgb_to_gray(img))
+    cv2.imshow('Vertical flip', vertical_flip(img))
+    print(type(vertical_flip(img)))
     # cv2.imshow('Horizontal flip', horizontal_flip(img))
     # cv2.imshow('Invert', invert(img))
     # cv2.imshow('Clear zone', clear_zone(img, 100, 100, 100, 100))

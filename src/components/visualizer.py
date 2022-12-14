@@ -29,7 +29,15 @@ class Visualizer(QLabel):
         self.margin = margin
         self.template = template
         self.setMinimumSize(QSize((int)(width*scale), (int)(height*scale)))
-        self.set_template()
+
+        self.images = []
+        # template = list(templates.keys())[self.template]  # get the n template (name: str)
+        for coors in templates[template](self.width(), self.height(), self.margin):
+            self.images.append(ImageBuffer(coors[2], coors[3], self))
+            self.images[-1].move(coors[0], coors[1])
+
+
+        # self.set_template()
 
 
     def set_template(self):
@@ -37,9 +45,9 @@ class Visualizer(QLabel):
         Set the template of the visualizer.
         The template is the layout of the image buffer's.
         '''
-        self.images = []
-        # template = list(templates.keys())[n]  # get the n template (name: str)
-        for coors in templates[self.template](self.width(), self.height(), self.margin):
-            self.images.append(ImageBuffer(coors[2], coors[3], self))
-            self.images[-1].move(coors[0], coors[1])
+        # self.images = []
+        # # template = list(templates.keys())[]  # get the n template (name: str)
+        # for coors in templates[template](self.width(), self.height(), self.margin):
+        #     self.images.append(ImageBuffer(coors[2], coors[3], self))
+        #     self.images[-1].move(coors[0], coors[1])
 

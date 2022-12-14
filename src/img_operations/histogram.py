@@ -3,14 +3,14 @@ import cv2
 import matplotlib.pyplot as plt
 
 
-def plot_histogram(img, title) -> None:
+def plot_histogram(img, title: str = '') -> None:
     '''
     Plot the histogram of the image
     :param image: image to plot
     :return: None
     '''
     plt.figure()
-    plt.title(f"{title} Histogram")
+    # plt.title(f"{title} Histogram")
     for i,col in enumerate(('b','g','r')):
         plt.plot(cv2.calcHist([img],[i],None,[256],[0,256]),color = col)
         plt.xlim([0,256])
@@ -30,7 +30,7 @@ def equalize_img(img) -> np.ndarray:
     return cv2.merge((r, g, b))  # Equalized image
 
 
-def resize_img_scale(img, scale) -> np.ndarray:
+def resize_img_scale(img, scale: float = 0.4) -> np.ndarray:
     '''
     Resize the image in it's original dimensions.
     This function is on percent scale, so a 100% scale will return the original image
@@ -41,7 +41,7 @@ def resize_img_scale(img, scale) -> np.ndarray:
     return cv2.resize(img, (int(img.shape[1] * scale / 100), int(img.shape[0] * scale / 100)))
 
 
-def resize_img(img, width, height) -> np.ndarray:
+def resize_img(img, width: int = 512, height: int = 512) -> np.ndarray:
     '''
     Reisze the image to the given dimensions
     :param img: image to stretch

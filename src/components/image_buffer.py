@@ -76,6 +76,7 @@ class ImageBuffer(QLabel):
         '''
         # print(image)
         self.image_path = image
+        print(self.image_path)
         self.q_image = QImage(self.image_path)
         self.setPixmap(QPixmap.fromImage(self.q_image))
         # self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)

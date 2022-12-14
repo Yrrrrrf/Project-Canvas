@@ -47,6 +47,7 @@ class Operations(Enum):
     ]
 
     HISTOGRAM = [
+        {'plot histogram' : plot_histogram},
        {'equalize image' : equalize_img},
        {'equalize histogram rgb' : equalize_hist_rgb},
        {'resize image scale' : resize_img_scale},
@@ -66,13 +67,13 @@ class Operations(Enum):
         {'exponential noise' : exponential_noise}
     ]
 
-    # BRUSH = [
-    #     {'set text': None},
-    #     {'draw': None},
-    #     {'blur': None},
-    #     {'something else...': None},
-    #     {'something else...': None},
-    # ]
+    BRUSH = [
+        {'set text': lambda: print('set text')},
+        {'draw': lambda: print('draw')},
+        {'blur': lambda: print('blur')},
+        {'something else...': lambda: print('something else...')},
+        {'something else...': lambda: print('something else...')},
+    ]
 
 
 

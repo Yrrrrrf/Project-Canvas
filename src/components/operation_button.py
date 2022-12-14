@@ -4,6 +4,7 @@ from PyQt6.QtGui import QIcon, QFont
 from PyQt6.QtCore import QSize
 from dataclasses import dataclass
 import cv2 as cv
+import numpy as np
 
 
 @dataclass
@@ -41,7 +42,7 @@ class OperationButton(QPushButton):
         '''
         Set the operation of the button.
         '''
-        path = 'resources\\img\\lena.png'
+        # path = 'resources\\img\\lena.png'
         self.clicked.connect(self.execute_operation)
 
 
@@ -49,22 +50,30 @@ class OperationButton(QPushButton):
     def execute_operation(self) -> None:
         '''
         Execute the operation of the button.
+        Converts an array to a QImage and sets it as the active image.
+        Also sets the active image path.
         '''
         try:
-            from src.components.image_buffer import active_buffer, QImage
+            from src.components.image_buffer import active_buffer, QImage, QPixmap
             # global active_image_path
-            if active_buffer != None:
-                print('Image selected wooo')
-                print(self.operation)
-                print(active_buffer.q_image)
-                # convert to cv2 image
-                # cv_image = cv.cvtColor(active_buffer.q_image, cv.COLOR_BGR2RGB)
-                # active_buffer.q_image = QImage(cv_image.data, cv_image.shape[1], cv_image.shape[0], cv_image.strides[0], QImage.Format.Format_RGB888)
-                # active_buffer.q_image = self.operation(active_buffer.q_image)
-            else: print('No image selected')
-        except:
-            print('Error: No image selected')
+            cv_image = cv.imread(active_buffer.image_path)
+            # apply the operation
+            # cv.imshow('image', cv_image)
+            cv_image = cv.cvtColor(cv_image, cv.COLOR_BGR2RGB)
+            cv_image = self.operation(cv_image)
+            print(f'Executing operation: {self.name}')
+            # cast it as a numpy ndarray
+            cv_image = np.ndarray(shape=(cv_image.shape[0], cv_image.shape[1], 3), dtype=np.uint8, buffer=cv_image.data, strides=(cv_image.strides[0], cv_image.strides[1], cv_image.strides[2]))
+            height, width, bytesPerComponent = cv_image.shape
+            bytesPerLine = bytesPerComponent*width
+            active_buffer.q_image = QImage(cv_image.data, width, height, bytesPerLine, QImage.Format.Format_RGB888)
+            active_buffer.setPixmap(QPixmap.fromImage(active_buffer.q_image))
+            # save the image
+            img = cv.imwrite('file.png', cv_image)
 
+            cv.imshow('image', img)
 
-        # self.operation()
+            active_buffer.update()
+        except ImportError:
+            print('\nError: No image selected')
 

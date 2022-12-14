@@ -44,7 +44,6 @@ if __name__ == '__main__':
     window = AppWindow()
     
     
-    current_img_path = ""
     
 
     window.show()

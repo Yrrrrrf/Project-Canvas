@@ -2,7 +2,7 @@ import numpy as np
 import cv2
 
 
-def kernel_filter(img, kernel) -> np.ndarray:
+def kernel_filter(img, kernel: int = 3) -> np.ndarray:
     '''
     Apply a kernel filter to the image
     :param img: image to filter
@@ -24,17 +24,18 @@ def sharpen_filter(img) -> np.ndarray:
     return cv2.filter2D(img, -1, kernel)
 
 
-def gaussian_filter(img, kernel_size) -> np.ndarray:
+def gaussian_filter(img, kernel_size: int = 3) -> np.ndarray:
     '''
     Apply a gaussian filter to the image
     :param img: image to filter
     :param kernel_size: kernel size
     :return: filtered image
     '''
+    # return cv2.GaussianBlur(img, (kernel_size, kernel_size), 0)
     return cv2.GaussianBlur(img, (kernel_size, kernel_size), 0)
 
 
-def mean_filter(img, kernel_size) -> np.ndarray:
+def mean_filter(img, kernel_size: int = 3) -> np.ndarray:
     '''
     Apply a mean filter to the image
     :param img: image to filter
@@ -44,7 +45,7 @@ def mean_filter(img, kernel_size) -> np.ndarray:
     return cv2.blur(img, (kernel_size, kernel_size))
 
 
-def median_filter(img, kernel_size) -> np.ndarray:
+def median_filter(img, kernel_size: int = 3) -> np.ndarray:
     '''
     Apply a median filter to the image
     :param img: image to filter
@@ -54,7 +55,7 @@ def median_filter(img, kernel_size) -> np.ndarray:
     return cv2.medianBlur(img, kernel_size)
 
 
-def ordered_range_filter(img, kernel_size) -> np.ndarray:
+def ordered_range_filter(img, kernel_size: int = 3) -> np.ndarray:
     '''
     Apply an ordered range filter to the image
     :param img: image to filter
@@ -65,7 +66,7 @@ def ordered_range_filter(img, kernel_size) -> np.ndarray:
     return img
 
 
-def laplacian_filter(img, kernel_size) -> np.ndarray:
+def laplacian_filter(img, kernel_size: int = 3) -> np.ndarray:
     '''
     Apply a laplacian filter to the image
     :param img: image to filter
@@ -75,7 +76,7 @@ def laplacian_filter(img, kernel_size) -> np.ndarray:
     return cv2.Laplacian(img, cv2.CV_64F, ksize=kernel_size)
 
 
-def bilateral_filter(img, kernel_size) -> np.ndarray:
+def bilateral_filter(img, kernel_size: int = 3) -> np.ndarray:
     '''
     Apply a bilateral filter to the image
     :param img: image to filter
@@ -85,7 +86,7 @@ def bilateral_filter(img, kernel_size) -> np.ndarray:
     return cv2.bilateralFilter(img, kernel_size, 75, 75)
 
 
-def sobel_filter(img, kernel_size) -> np.ndarray:
+def sobel_filter(img, kernel_size: int = 3) -> np.ndarray:
     '''
     Apply a sobel filter to the image
     :param img: image to filter
@@ -95,7 +96,7 @@ def sobel_filter(img, kernel_size) -> np.ndarray:
     return cv2.Sobel(img, cv2.CV_64F, 1, 0, ksize=kernel_size)
 
 
-def emboss_filter(img, kernel_size) -> np.ndarray:
+def emboss_filter(img, kernel_size: int = 3) -> np.ndarray:
     '''
     Apply a emboss filter to the image
     :param img: image to filter
@@ -106,7 +107,7 @@ def emboss_filter(img, kernel_size) -> np.ndarray:
     return cv2.filter2D(img, -1, kernel)
 
 
-def edge_filter(img, kernel_size) -> np.ndarray:
+def edge_filter(img, kernel_size: int = 3) -> np.ndarray:
     '''
     Apply a edge filter to the image
     :param img: image to filter
